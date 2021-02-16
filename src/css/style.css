@@ -1,0 +1,23 @@
+:root {
+    --primary: #1e90ff;
+    --secondary: #397abb;
+    --white: #fff;
+    --gray: #666;
+    --dark: #333;
+}
+
+* {
+    margin: 0; padding: 0;
+    outline: none; text-decoration: none;
+    box-sizing: border-box;
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--white);
+}
+
+html {
+    font-size: 62%;
+}
+
+body {
+    background: var(--dark);
+}
