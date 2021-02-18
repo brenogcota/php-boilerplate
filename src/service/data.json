@@ -1,0 +1,502 @@
+[
+    {
+        "Codigo": "1",
+        "Descricao": "LEITE INTEGRAL CEMIL 1L",
+        "Venda Un.": "3.47448634003161"
+    },
+    {
+        "Codigo": "2",
+        "Descricao": "CERVEJA ANTARCTICA SUBZERO LATAO 473ML",
+        "Venda Un.": "3.42978235154956"
+    },
+    {
+        "Codigo": "3",
+        "Descricao": "BEBIDA LACTEA COM IOGURTE YOGUEDES 110G",
+        "Venda Un.": "0.535699734811958"
+    },
+    {
+        "Codigo": "4",
+        "Descricao": "CERVEJA GLACIAL LATAO 473ML",
+        "Venda Un.": "2.41118957644465"
+    },
+    {
+        "Codigo": "5",
+        "Descricao": "BATATINHA KG",
+        "Venda Un.": "3.67575133235469"
+    },
+    {
+        "Codigo": "6",
+        "Descricao": "LARANJA PERA RIO KG",
+        "Venda Un.": "2.65721300434462"
+    },
+    {
+        "Codigo": "7",
+        "Descricao": "OLEO DE SOJA SOYA PET 900ML",
+        "Venda Un.": "7.50583960598457"
+    },
+    {
+        "Codigo": "8",
+        "Descricao": "BISCOITO CASCUDO PAIS E FILHOS UN",
+        "Venda Un.": "0.999926937738247"
+    },
+    {
+        "Codigo": "9",
+        "Descricao": "BEBIDA LACTEA CHOCOMIL CEMIL CAIXA 200ML",
+        "Venda Un.": "0.826670590753425"
+    },
+    {
+        "Codigo": "10",
+        "Descricao": "TOMATE EXTRA KG",
+        "Venda Un.": "3.40211854348485"
+    },
+    {
+        "Codigo": "11",
+        "Descricao": "ABOBORA JAPONESA KG",
+        "Venda Un.": "2.16655349654619"
+    },
+    {
+        "Codigo": "12",
+        "Descricao": "QUEIMAO DE VERDURA KG",
+        "Venda Un.": "0.989660816606483"
+    },
+    {
+        "Codigo": "13",
+        "Descricao": "CERVEJA BRAHMA LATAO 473ML",
+        "Venda Un.": "3.66947230244159"
+    },
+    {
+        "Codigo": "14",
+        "Descricao": "CEBOLA MEDIA KG",
+        "Venda Un.": "2.77055049241198"
+    },
+    {
+        "Codigo": "15",
+        "Descricao": "CHUCHU KG",
+        "Venda Un.": "2.29204766891032"
+    },
+    {
+        "Codigo": "16",
+        "Descricao": "FRANGO FERREIRA KG",
+        "Venda Un.": "7.59674396860385"
+    },
+    {
+        "Codigo": "17",
+        "Descricao": "FEIJAO CARIOCA GRANEL",
+        "Venda Un.": "6.48956740439167"
+    },
+    {
+        "Codigo": "18",
+        "Descricao": "CERVEJA ITAIPAVA LATAO 473ML",
+        "Venda Un.": "2.78283136966127"
+    },
+    {
+        "Codigo": "19",
+        "Descricao": "CERVEJA SKOL LATAO 473ML",
+        "Venda Un.": "3.53824097316084"
+    },
+    {
+        "Codigo": "20",
+        "Descricao": "ACUCAR CRISTAL LACUCAR 5KG",
+        "Venda Un.": "11.9287363966143"
+    },
+    {
+        "Codigo": "21",
+        "Descricao": "CENOURA KG",
+        "Venda Un.": "3.08328323770605"
+    },
+    {
+        "Codigo": "22",
+        "Descricao": "BANANA PRATA KG",
+        "Venda Un.": "3.05007192992597"
+    },
+    {
+        "Codigo": "23",
+        "Descricao": "ASA DE FRANGO A GRANEL KG",
+        "Venda Un.": "12.4746850423101"
+    },
+    {
+        "Codigo": "24",
+        "Descricao": "OVOS BRANCO CARTELA UN",
+        "Venda Un.": "10.1825578855395"
+    },
+    {
+        "Codigo": "25",
+        "Descricao": "CERVEJA BRAHMA DUPLO MALTE 350ML",
+        "Venda Un.": "3.05648435741616"
+    },
+    {
+        "Codigo": "26",
+        "Descricao": "CARNE DE PERNIL SEM OSSO KG",
+        "Venda Un.": "16.468696602909"
+    },
+    {
+        "Codigo": "27",
+        "Descricao": "ESPONJA DE ACO BOM BRIL 8UN",
+        "Venda Un.": "1.49528453364817"
+    },
+    {
+        "Codigo": "28",
+        "Descricao": "COXA E SOBRECOXA DE FRANGO A GRANEL KG",
+        "Venda Un.": "7.48536579850647"
+    },
+    {
+        "Codigo": "29",
+        "Descricao": "MELANCIA KG",
+        "Venda Un.": "1.67652013313106"
+    },
+    {
+        "Codigo": "30",
+        "Descricao": "REPOLHO VERDE KG",
+        "Venda Un.": "1.57674150525449"
+    },
+    {
+        "Codigo": "31",
+        "Descricao": "ACEM BOVINO KG",
+        "Venda Un.": "24.9210870966028"
+    },
+    {
+        "Codigo": "32",
+        "Descricao": "MILHO GRANEL",
+        "Venda Un.": "2.00757126086555"
+    },
+    {
+        "Codigo": "33",
+        "Descricao": "FARINHA MINEIRA GRANEL",
+        "Venda Un.": "5.48763932489283"
+    },
+    {
+        "Codigo": "34",
+        "Descricao": "ARROZ PARBOILIZADO CELIA GRANEL",
+        "Venda Un.": "5.39582903892822"
+    },
+    {
+        "Codigo": "35",
+        "Descricao": "SAL MIRAMAR 1KG",
+        "Venda Un.": "1.12429987608426"
+    },
+    {
+        "Codigo": "36",
+        "Descricao": "MILHO VERDE FUGINI SACHE 200G",
+        "Venda Un.": "2.38761949685535"
+    },
+    {
+        "Codigo": "37",
+        "Descricao": "TOMATE COMUM KG",
+        "Venda Un.": "5.20629253017452"
+    },
+    {
+        "Codigo": "38",
+        "Descricao": "MACA GALA KG",
+        "Venda Un.": "9.05749661001071"
+    },
+    {
+        "Codigo": "39",
+        "Descricao": "LOMBO SUINO KG",
+        "Venda Un.": "17.1910657384947"
+    },
+    {
+        "Codigo": "40",
+        "Descricao": "SABAO NEUTRO EM BARRA YPE 5X200G",
+        "Venda Un.": "7.51557053941909"
+    },
+    {
+        "Codigo": "41",
+        "Descricao": "FEIJAO CARIOCA PREMIUM GRANEL",
+        "Venda Un.": "7.03914087292015"
+    },
+    {
+        "Codigo": "42",
+        "Descricao": "BEBIDA LACTEA VITAMIL CEMIL CAIXA 200ML",
+        "Venda Un.": "0.910648535564854"
+    },
+    {
+        "Codigo": "43",
+        "Descricao": "CERVEJA SERRANA LATAO 473ML",
+        "Venda Un.": "2.76449398991857"
+    },
+    {
+        "Codigo": "44",
+        "Descricao": "CREME DE LEITE ITAMBE CAIXA 200G",
+        "Venda Un.": "3.11012558869702"
+    },
+    {
+        "Codigo": "45",
+        "Descricao": "REFRIGERANTE COCA COLA 2L",
+        "Venda Un.": "6.80311889250814"
+    },
+    {
+        "Codigo": "46",
+        "Descricao": "CERVEJA SKOL LATA 350ML",
+        "Venda Un.": "2.94583159649854"
+    },
+    {
+        "Codigo": "47",
+        "Descricao": "LEITE INTEGRAL ITAMBE 1L",
+        "Venda Un.": "3.78323567427833"
+    },
+    {
+        "Codigo": "48",
+        "Descricao": "CANJICA DE MILHO GROSSA GRANEL KG",
+        "Venda Un.": "2.13420177948941"
+    },
+    {
+        "Codigo": "49",
+        "Descricao": "BEBIDA LAC COM IOGURTE MORANGO YOGUEDES 540G",
+        "Venda Un.": "2.47697643979058"
+    },
+    {
+        "Codigo": "50",
+        "Descricao": "CERVEJA PURO MALTE BOHEMIA 473ML",
+        "Venda Un.": "3.76849272807404"
+    },
+    {
+        "Codigo": "51",
+        "Descricao": "COSTELINHA SUINA KG",
+        "Venda Un.": "18.9920610674908"
+    },
+    {
+        "Codigo": "52",
+        "Descricao": "ARROZ MORELLI GRANEL",
+        "Venda Un.": "5.48756544067635"
+    },
+    {
+        "Codigo": "53",
+        "Descricao": "LEITE CONDENSADO CEMIL CAIXA 395G",
+        "Venda Un.": "5.12017302573203"
+    },
+    {
+        "Codigo": "54",
+        "Descricao": "CERVEJA LATAO PURO MALTE SKOL 473ML",
+        "Venda Un.": "3.47269128113879"
+    },
+    {
+        "Codigo": "55",
+        "Descricao": "REFRIGERANTE COCA COLA LATA 350ML",
+        "Venda Un.": "2.38768953068592"
+    },
+    {
+        "Codigo": "56",
+        "Descricao": "BEBIDA LACTEA MORANGO CEMIL CAIXA 200ML",
+        "Venda Un.": "0.925961626313385"
+    },
+    {
+        "Codigo": "57",
+        "Descricao": "OVOS BRANCOS 12UN",
+        "Venda Un.": "4.79176803394625"
+    },
+    {
+        "Codigo": "58",
+        "Descricao": "SALSICHA HOT DOG PIF PAF A GRANEL KG",
+        "Venda Un.": "8.65797575899295"
+    },
+    {
+        "Codigo": "59",
+        "Descricao": "CHA DE DENTRO BOVINA KG",
+        "Venda Un.": "30.8108999257522"
+    },
+    {
+        "Codigo": "60",
+        "Descricao": "BANANA CATURRA KG",
+        "Venda Un.": "3.48545434042482"
+    },
+    {
+        "Codigo": "61",
+        "Descricao": "MANDIOCA KG",
+        "Venda Un.": "2.710051301725"
+    },
+    {
+        "Codigo": "62",
+        "Descricao": "FRANGO FRIAL KG",
+        "Venda Un.": "7.9847223825261"
+    },
+    {
+        "Codigo": "63",
+        "Descricao": "BETERRABA KG",
+        "Venda Un.": "3.23379784471467"
+    },
+    {
+        "Codigo": "64",
+        "Descricao": "PIMENTAO KG",
+        "Venda Un.": "3.30864537444934"
+    },
+    {
+        "Codigo": "65",
+        "Descricao": "OLEO DE SOJA CORCOVADO PET 900ML",
+        "Venda Un.": "7.4232818134982"
+    },
+    {
+        "Codigo": "66",
+        "Descricao": "BARRIGA SUINA FRESCA KG",
+        "Venda Un.": "16.6375953038488"
+    },
+    {
+        "Codigo": "67",
+        "Descricao": "RACAO CANINA PITTY KG",
+        "Venda Un.": "3.5307378553229"
+    },
+    {
+        "Codigo": "68",
+        "Descricao": "BISCOITO CREAM CRACKER RICHESTER 400G",
+        "Venda Un.": "3.62305017103763"
+    },
+    {
+        "Codigo": "69",
+        "Descricao": "CERVEJA PETRA PURO MALTE LATA 350ML",
+        "Venda Un.": "2.91133142857143"
+    },
+    {
+        "Codigo": "70",
+        "Descricao": "BISCOITO CREAM CRACKER VILMA 360G",
+        "Venda Un.": "2.94563583815029"
+    },
+    {
+        "Codigo": "71",
+        "Descricao": "COSTELA BOVINA KG",
+        "Venda Un.": "18.0355496323387"
+    },
+    {
+        "Codigo": "72",
+        "Descricao": "BISCOITO RECHEADO CHOCO SHAKE DANIX 130G",
+        "Venda Un.": "1.80080500894454"
+    },
+    {
+        "Codigo": "73",
+        "Descricao": "LEITE FERMENTADO YAKULT 80G",
+        "Venda Un.": "1.64852340936375"
+    },
+    {
+        "Codigo": "74",
+        "Descricao": "BISCOITO RECHEADO MORANGO DANIX 130G",
+        "Venda Un.": "1.80703839122486"
+    },
+    {
+        "Codigo": "75",
+        "Descricao": "ARROZ BIANCO SEPE 5KG",
+        "Venda Un.": "23.7760306748466"
+    },
+    {
+        "Codigo": "76",
+        "Descricao": "CARNE MOIDA BOVINA KG",
+        "Venda Un.": "20.9222057993107"
+    },
+    {
+        "Codigo": "77",
+        "Descricao": "MORTADELA CONFIANCA SEARA  ATACADO KG",
+        "Venda Un.": "6.76113370338488"
+    },
+    {
+        "Codigo": "78",
+        "Descricao": "BISCOITO RECHEADO CHOCOLATE DANIX 130G",
+        "Venda Un.": "1.80046497210167"
+    },
+    {
+        "Codigo": "79",
+        "Descricao": "TOUCINHO SUINO KG",
+        "Venda Un.": "8.0349199789616"
+    },
+    {
+        "Codigo": "80",
+        "Descricao": "PATINHO BOVINO KG",
+        "Venda Un.": "28.387485425817"
+    },
+    {
+        "Codigo": "81",
+        "Descricao": "TEMPERO PARA CARNE SAZON AJINOMOTO 60G",
+        "Venda Un.": "3.92659520807062"
+    },
+    {
+        "Codigo": "82",
+        "Descricao": "LIMAO KG",
+        "Venda Un.": "2.49335472117364"
+    },
+    {
+        "Codigo": "83",
+        "Descricao": "REFRIGERANTE GUARANA  ANTARCTICA PET 237ML",
+        "Venda Un.": "1.1959534583064"
+    },
+    {
+        "Codigo": "84",
+        "Descricao": "MACARRAO ESPAGUETE YARA 1KG",
+        "Venda Un.": "4.22548387096774"
+    },
+    {
+        "Codigo": "85",
+        "Descricao": "ESPONJA BETTANIN BRILHUS 1UN",
+        "Venda Un.": "0.752978436657682"
+    },
+    {
+        "Codigo": "86",
+        "Descricao": "CERVEJA ITAIPAVA LATA 350ML",
+        "Venda Un.": "2.20220488466757"
+    },
+    {
+        "Codigo": "87",
+        "Descricao": "DETERGENTE LIQUIDO NEUTRO YPE 500ML",
+        "Venda Un.": "1.77227891156463"
+    },
+    {
+        "Codigo": "88",
+        "Descricao": "MOLHO DE TOMATE TRADICIONAL STELLA DORO 340G",
+        "Venda Un.": "1.08187969924812"
+    },
+    {
+        "Codigo": "89",
+        "Descricao": "CREME DE LEITE JUSSARA 200G",
+        "Venda Un.": "3.1000963523744"
+    },
+    {
+        "Codigo": "90",
+        "Descricao": "REFRIGERANTE CMENOS ACUCAR COCA COLA PET 2,5L",
+        "Venda Un.": "7.52737613398465"
+    },
+    {
+        "Codigo": "91",
+        "Descricao": "BATATA DOCE BRANCA KG",
+        "Venda Un.": "3.55575063974979"
+    },
+    {
+        "Codigo": "92",
+        "Descricao": "FARINHA DE TRIGO SEM FERMENTO VILMA 1KG",
+        "Venda Un.": "3.59969242310578"
+    },
+    {
+        "Codigo": "93",
+        "Descricao": "MUSCULO BOVINO KG",
+        "Venda Un.": "25.825680156106"
+    },
+    {
+        "Codigo": "94",
+        "Descricao": "PAO FRANCES PAIS E FILHOS KG",
+        "Venda Un.": "10.2999401837512"
+    },
+    {
+        "Codigo": "95",
+        "Descricao": "FRANGO ATALAIA KG",
+        "Venda Un.": "7.86917844636054"
+    },
+    {
+        "Codigo": "96",
+        "Descricao": "BISCOITO RECHEADO CHOCO-CHOCHO DANIX 130G",
+        "Venda Un.": "1.78821625887924"
+    },
+    {
+        "Codigo": "97",
+        "Descricao": "DETERGENTE LIQUIDO CLEAR YPE 500ML",
+        "Venda Un.": "1.75133921411387"
+    },
+    {
+        "Codigo": "98",
+        "Descricao": "PEPINO KG",
+        "Venda Un.": "1.51772399683263"
+    },
+    {
+        "Codigo": "99",
+        "Descricao": "PAO DE FORMA MILANI TRADICIONAL 500G",
+        "Venda Un.": "5.18946677604594"
+    },
+    {
+        "Codigo": "100",
+        "Descricao": "CHA DE FORA BOVINA KG",
+        "Venda Un.": "29.293899889742"
+    }
+]

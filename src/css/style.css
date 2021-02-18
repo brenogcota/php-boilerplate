@@ -9,15 +9,54 @@
 * {
     margin: 0; padding: 0;
     outline: none; text-decoration: none;
+    list-style: none;
     box-sizing: border-box;
     font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--white);
 }
 
 html {
-    font-size: 62%;
+    font-size: 82%;
 }
 
 body {
-    background: var(--dark);
+    margin: 20px;
+    display: flex;
+    align-items: center; justify-content: center; flex-direction: column;
+}
+
+.item {
+    width: 200px;
+    padding: 10px; margin: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.item p, .item span {
+    margin: 10px 0;
+}
+
+.item .buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.item .buttons button {
+    background: rgb(35, 132, 237);
+    color: #DDD;
+    padding: 5px 10px; margin: 5px 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.item .buttons button:hover {
+    background: rgba(35, 133, 237, 0.775);
+    transition: all .6s;
+    cursor: pointer;
+}
+
+.search {
+    width: 200px;
+    background: #DDD;
+    padding: 6px; margin: 10px;
+    border: none; border-radius: 2px;
 }

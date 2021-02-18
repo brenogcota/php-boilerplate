@@ -6,7 +6,7 @@ read message
 echo "# $message" >> README.md
 
 git init
-git add README.md
+git add .
 git commit -m "init repository"
 
 echo 'repo name:'
