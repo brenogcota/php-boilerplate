@@ -58,10 +58,16 @@ const APP = {
     orderByCategory() {},
     orderByPrice() {},
     createList() {},
-    addToList(){},
+    addToList() {},
     removeFromList() {},
     updateList() {},
-    shareList() {}
+    shareList() {},
+    calculateTotal() {},
+    changeQuantity() {},
+    calculateTime() {},
+    shippingValue() {},
+    addAddress() {},
+    updateAddress() {}
 }
 
 APP.init();
