@@ -3,7 +3,34 @@
 const APP = {
     init() {
         console.log('Welcome to fight club..')
-        this.list()
+        this.render()
+    },
+
+    async render(){
+        const data = await this.getProducts()
+
+        this.list(data)
+
+        document.addEventListener('click', (e) => {
+            let filter = e.target.classList
+            console.log('render..')
+
+            switch(true) {
+                case filter.contains('OrderByPrice'):
+                    this.orderBy(data, 'Venda Un.')
+                    break;
+                case filter.contains('OrderByName'):
+                    this.orderBy(data, 'Descricao')
+                    break;
+                case filter.contains('show'):
+                    this.paginate(19)
+                    break;
+                default:
+                    
+                    break;
+            }
+        })
+
     },
 
     getProducts() {
@@ -13,9 +40,11 @@ const APP = {
 
         return data
     },
-    async list() {
-        const data = await this.getProducts()
+    list(data) {
+        
         let ul = document.querySelector('#_list-products')
+
+        ul.innerHTML = ''
         
         data.map(item => {
             let li = document.createElement('li')
@@ -35,28 +64,51 @@ const APP = {
             ul.appendChild(li)
         })
 
+        this.paginate()
         this.search()
+    },
+    paginate(perPage = 19) {
+        let items = document.querySelectorAll('.item')
+        let itemsVisible = document.querySelectorAll('.item.is-visible')
+
+        perPage += itemsVisible.length;
+
+        Array.from(items).forEach((item, index) => {
+            
+            if(index > perPage) {
+                item.classList.remove('is-visible')
+            } else {
+                item.classList.add('is-visible')
+            }
+        })
     },
     search() {
         let input = document.querySelector('.search')
         let items = document.querySelectorAll('.item')
         
-        input.addEventListener('keyup', function(e) {
-            
+        input.addEventListener('keyup', (e) => {
+            let value = e.target.value.toUpperCase()
+
             Array.from(items).forEach(item => {
                 let name = item.dataset.name.toUpperCase()
-                let value = e.target.value.toUpperCase()
                 
                 if(!name.includes(value)) {
-                    item.style.display = 'none'
+                    item.classList.remove('is-visible')
                 } else {
-                    item.style.display = 'block'
+                    item.classList.add('is-visible')
                 }
             })
+
         })
     },
+    orderBy(data, type) {
+        let filterData = data.sort(function (a, b) {
+                                        return a[type].localeCompare(b[type])
+                                  });
+
+        this.list(filterData)
+    },
     orderByCategory() {},
-    orderByPrice() {},
     createList() {},
     addToList() {},
     removeFromList() {},

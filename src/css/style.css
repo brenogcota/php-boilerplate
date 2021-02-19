@@ -19,16 +19,30 @@ html {
 }
 
 body {
-    margin: 20px;
     display: flex;
     align-items: center; justify-content: center; flex-direction: column;
+    margin: 20px;
+    background: #222;
+    color: #FFF;
+}
+
+#_list-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
 }
 
 .item {
-    width: 200px;
+    width: 200px; height: 100%;
     padding: 10px; margin: 10px;
     text-align: center;
-    border: 1px solid #ddd;
+    background: #222;
+    border: 2px solid #333;
+    display: none;
+}
+
+.item.is-visible {
+    display: block;
 }
 
 .item p, .item span {
@@ -59,4 +73,18 @@ body {
     background: #DDD;
     padding: 6px; margin: 10px;
     border: none; border-radius: 2px;
+}
+
+.show {
+    background: rgb(35, 132, 237);
+    color: #DDD;
+    padding: 5px 10px; margin: 5px 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.show:hover {
+    background: rgba(35, 133, 237, 0.775);
+    transition: all .6s;
+    cursor: pointer;
 }
