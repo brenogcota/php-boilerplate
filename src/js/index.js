@@ -51,8 +51,8 @@ const APP = {
 
             li.innerHTML = `
                              <div class="item" data-id="${item['Codigo']}" data-name="${item['Descricao']}">
-                                <p class="item-description">Descrição: ${item['Descricao']}</p>
-                                <span class="item-price">Preço: ${Number(item['Venda Un.']).toFixed(2)}</span>
+                                <p class="item-description"> ${item['Descricao']}</p>
+                                <span class="item-price"> ${Number(item['Venda Un.']).toFixed(2)}</span>
 
                                 <div class="buttons">
                                     <button>✔</button>
@@ -85,17 +85,17 @@ const APP = {
     search() {
         let input = document.querySelector('.search')
         let items = document.querySelectorAll('.item')
-        
+
         input.addEventListener('keyup', (e) => {
             let value = e.target.value.toUpperCase()
 
             Array.from(items).forEach(item => {
                 let name = item.dataset.name.toUpperCase()
                 
-                if(!name.includes(value)) {
-                    item.classList.remove('is-visible')
-                } else {
+                if(name.includes(value)) {
                     item.classList.add('is-visible')
+                } else {
+                    item.classList.remove('is-visible')
                 }
             })
 
