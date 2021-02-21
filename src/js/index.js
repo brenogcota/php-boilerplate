@@ -4,13 +4,14 @@ const APP = {
     init() {
         console.log('Welcome to fight club..')
         this.render()
+        this.createList('list')
     },
 
     async render(){
         const data = await this.getProducts()
 
         this.list(data)
-
+        
         document.addEventListener('click', (e) => {
             let filter = e.target.classList
             console.log('render..')
@@ -50,12 +51,12 @@ const APP = {
             let li = document.createElement('li')
 
             li.innerHTML = `
-                             <div class="item" data-id="${item['Codigo']}" data-name="${item['Descricao']}">
+                             <div class="item" data-id="${item['Codigo']}" data-name="${item['Descricao']}" data-price="${Number(item['Venda Un.']).toFixed(2)}">
                                 <p class="item-description"> ${item['Descricao']}</p>
                                 <span class="item-price"> ${Number(item['Venda Un.']).toFixed(2)}</span>
 
                                 <div class="buttons">
-                                    <button>✔</button>
+                                    <button class="add">✔</button>
                                     <button>❤</button>
                                 </div>
                              </div>
@@ -66,6 +67,7 @@ const APP = {
 
         this.paginate()
         this.search()
+        this.addToList()
     },
     paginate(perPage = 19) {
         let items = document.querySelectorAll('.item')
@@ -109,8 +111,50 @@ const APP = {
         this.list(filterData)
     },
     orderByCategory() {},
-    createList() {},
-    addToList() {},
+    createList(name) {
+        localStorage.setItem('@App/'+name, JSON.stringify(''));
+    },
+    addToList() {
+        let addButton = document.querySelectorAll('.add');
+
+        addButton.forEach( item => {
+            item.addEventListener('click', ({target}) => {
+                const {id, name, price} = target.closest('.item').dataset;
+                let localList = JSON.parse(localStorage.getItem('@App/list'));
+                let quantidade = 1;
+                if(localList != '') {
+                    localList.map((item, idx) => {
+                        if(item.id == id){
+                            quantidade = item.quantidade+1
+                            localList.splice(idx, 1)
+                        }
+                    })
+                }
+                let newList = [...localList, ...[{id, name, price, quantidade}]];
+                localStorage.setItem('@App/list', JSON.stringify(newList))
+                
+                let ul = document.querySelector('._minicart-items');
+                ul.innerHTML = '';
+                let items = JSON.parse(localStorage.getItem('@App/list'));
+                items.map(item => {
+                    let li = document.createElement('li')
+
+                    li.innerHTML = `
+                                    <div class="cart-item" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">
+                                        <span>desc: ${item.name}</span>
+                                        <span>preço: ${item.price}</span>
+                                        <span>quantidade: ${item.quantidade}</span>
+                                    </div>
+
+                                    `;
+                    ul.appendChild(li)
+                })
+                
+                this.openMinicart();
+                this.closeModal();
+            })
+        })
+    },
     removeFromList() {},
     updateList() {},
     shareList() {},
@@ -119,7 +163,15 @@ const APP = {
     calculateTime() {},
     shippingValue() {},
     addAddress() {},
-    updateAddress() {}
+    updateAddress() {},
+    openMinicart() {
+        document.querySelector('.modal').style.display = 'flex';
+    },
+    closeModal() {
+        setTimeout(() => {
+            document.querySelector('.modal').style.display = 'none';
+        }, 1500);
+    }
 }
 
 APP.init();

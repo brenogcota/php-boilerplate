@@ -1,9 +1,10 @@
 :root {
     --primary: #1e90ff;
     --secondary: #397abb;
-    --white: #fff;
+    --white: #ffffff;
     --gray: #666;
     --dark: #333;
+    --success: rgb(39, 180, 34);
 }
 
 * {
@@ -23,7 +24,7 @@ body {
     align-items: center; justify-content: center; flex-direction: column;
     margin: 20px;
     background: #222;
-    color: #FFF;
+    color: var(--white);
 }
 
 #_list-products {
@@ -37,7 +38,7 @@ body {
     padding: 10px; margin: 10px;
     text-align: center;
     background: #222;
-    border: 2px solid #333;
+    border: 2px solid var(--dark);
     display: none;
 }
 
@@ -55,36 +56,82 @@ body {
 }
 
 .item .buttons button {
-    background: rgb(35, 132, 237);
-    color: #DDD;
+    background: var(--primary);
+    color: var(--white);
     padding: 5px 10px; margin: 5px 10px;
     border: none;
     border-radius: 4px;
 }
 
 .item .buttons button:hover {
-    background: rgba(35, 133, 237, 0.775);
+    background: var(--primary);
     transition: all .6s;
     cursor: pointer;
 }
 
 .search {
     width: 200px;
-    background: #DDD;
+    background: var(--gray);
     padding: 6px; margin: 10px;
     border: none; border-radius: 2px;
 }
 
 .show {
-    background: rgb(35, 132, 237);
-    color: #DDD;
+    background: var(--primary);
+    color: var(--white);
     padding: 5px 10px; margin: 5px 10px;
     border: none;
     border-radius: 4px;
 }
 
 .show:hover {
-    background: rgba(35, 133, 237, 0.775);
+    background: var(--primary);
     transition: all .6s;
     cursor: pointer;
+}
+
+.modal {
+    display: none;
+    min-width: 100%;
+    min-height: 100%;
+    top: 0;
+    position: absolute;
+    background: rgba(133, 129, 129, 0.166);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .minicart {
+    background: #FFF;
+}
+.modal .minicart  ._minicart-items .cart-item {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+}
+
+.modal .minicart  ._minicart-items span {
+    color: #333;
+    margin: 20px;
+}
+
+.modal .minicart .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: var(--white);
+    border-top: 1px solid var(--gray);
+    text-align: end;
+}
+
+.modal .minicart .footer span {
+    color: var(--dark);
+}
+
+.modal .minicart .footer .btn {
+    background: var(--success);
+    color: var(--gray);
+    padding: 5px 10px; margin: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    color: #FFF;
 }
