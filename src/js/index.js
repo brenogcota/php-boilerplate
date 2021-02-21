@@ -34,6 +34,28 @@ const APP = {
 
     },
 
+    renderMiniCart() {
+        let ul = document.querySelector('._minicart-items');
+        ul.innerHTML = '';
+        let items = JSON.parse(localStorage.getItem('@App/list'));
+        items.map(item => {
+            let li = document.createElement('li')
+
+            li.innerHTML = `
+                            <div class="cart-item" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">
+                                <span>desc: ${item.name}</span>
+                                <span>preço: ${item.price}</span>
+                                <span>quantidade: ${item.quantidade}</span>
+                            </div>
+
+                            `;
+            ul.appendChild(li)
+        })
+        
+        this.openMinicart();
+        this.closeModal();
+    },
+
     getProducts() {
         let data = fetch('http://127.0.0.1:5500/src/service/data.json')
             .then(res => res.json())
@@ -130,28 +152,11 @@ const APP = {
                         }
                     })
                 }
+
                 let newList = [...localList, ...[{id, name, price, quantidade}]];
                 localStorage.setItem('@App/list', JSON.stringify(newList))
-                
-                let ul = document.querySelector('._minicart-items');
-                ul.innerHTML = '';
-                let items = JSON.parse(localStorage.getItem('@App/list'));
-                items.map(item => {
-                    let li = document.createElement('li')
 
-                    li.innerHTML = `
-                                    <div class="cart-item" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">
-                                        <span>desc: ${item.name}</span>
-                                        <span>preço: ${item.price}</span>
-                                        <span>quantidade: ${item.quantidade}</span>
-                                    </div>
-
-                                    `;
-                    ul.appendChild(li)
-                })
-                
-                this.openMinicart();
-                this.closeModal();
+                this.renderMiniCart();
             })
         })
     },
@@ -166,6 +171,7 @@ const APP = {
     updateAddress() {},
     openMinicart() {
         document.querySelector('.modal').style.display = 'flex';
+        document.querySelector('.modal').style.top = `${window.scrollY}px`;
     },
     closeModal() {
         setTimeout(() => {

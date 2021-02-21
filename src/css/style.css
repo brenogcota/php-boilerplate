@@ -94,7 +94,6 @@ body {
     display: none;
     min-width: 100%;
     min-height: 100%;
-    top: 0;
     position: absolute;
     background: rgba(133, 129, 129, 0.166);
     justify-content: center;
