@@ -35,9 +35,9 @@ const APP = {
     },
 
     renderMiniCart() {
+        let items = JSON.parse(localStorage.getItem('@App/list'));
         let ul = document.querySelector('._minicart-items');
         ul.innerHTML = '';
-        let items = JSON.parse(localStorage.getItem('@App/list'));
         items.map(item => {
             let li = document.createElement('li')
 
@@ -157,11 +157,28 @@ const APP = {
                 localStorage.setItem('@App/list', JSON.stringify(newList))
 
                 this.renderMiniCart();
+                this.convertCSV();
             })
         })
     },
     removeFromList() {},
     updateList() {},
+    convertCSV() {
+        const items = JSON.parse(localStorage.getItem('@App/list'));
+        const replacer = (key, value) => value === null ? '' : value 
+        const header = Object.keys(items[0])
+        const csv = "data:text/csv;charset=utf-8," 
+        +[
+            header.join(','),
+            ...items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+        ].join('\r\n')
+
+        let encodedUri = encodeURI(csv);
+        let aEL = document.querySelector(".btn > a ");
+        aEL.setAttribute("href", encodedUri);
+        aEL.setAttribute("download", "lista.csv");
+
+    },
     shareList() {},
     calculateTotal() {},
     changeQuantity() {},
