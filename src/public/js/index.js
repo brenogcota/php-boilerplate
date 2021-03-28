@@ -167,8 +167,7 @@ const APP = {
         const items = JSON.parse(localStorage.getItem('@App/list'));
         const replacer = (key, value) => value === null ? '' : value 
         const header = Object.keys(items[0])
-        const csv = "data:text/csv;charset=utf-8," 
-        +[
+        const csv = "data:text/csv;charset=utf-8,"+[
             header.join(','),
             ...items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
         ].join('\r\n')
