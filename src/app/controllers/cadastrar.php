@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("conexao.php");
+include("../models/conexao.php");
 
 if (empty($_POST['nome']) || empty($_POST['login']) || empty($_POST['telefone']) || empty($_POST['senha'])) {
     header('Location: cadastro.php');
