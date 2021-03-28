@@ -311,7 +311,7 @@ session_start();
           <h2 class="active"> Cadastro </h2>
 
           <?php
-          if($_SESSION['status_cadastro']):
+          if(isset($_SESSION['status_cadastro'])):
           ?>
           <p class="sucesso">Cadastro efetuado com sucesso! Faça login informando o seu usuário e senha <a href="login.php"> aqui</a>.</p>
           <?php
@@ -319,7 +319,7 @@ session_start();
           unset($_SESSION['status_cadastro']);
           ?>
           <?php
-          if ($_SESSION['usuario_existe']): 
+          if (isset($_SESSION['usuario_existe'])): 
           ?>
           <p class="erro">O usuário escolhido já existe. Informe um novo e tente novamente.</p>
           <?php
