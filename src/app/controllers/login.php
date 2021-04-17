@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ("../models/conexao.php");
+require_once "./src/app/models/UsuarioModel.php";
 
 if (empty($_POST['login']) || empty($_POST['senha'])) {
     header('Location: /login');
@@ -19,7 +19,7 @@ $row = mysqli_num_rows($result);
 
 if($row == 1){
 	$_SESSION['login'] = $login;
-	header('Location: /');
+	header('Location: /painel');
 	exit();
 } else{
 	$_SESSION['nao_autenticado'] = true;

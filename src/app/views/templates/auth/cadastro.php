@@ -14,7 +14,7 @@ session_start();
 
 <body>
     <div class="wrapper fadeInDown">
-        <div id="formContent">''
+        <div id="formContent">
           <!-- Tabs Titles -->
           <h2 class="active"> Cadastro </h2>
 

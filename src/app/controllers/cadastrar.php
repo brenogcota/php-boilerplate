@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "./src/app/models/conexao.php";
+require_once "./src/app/models/sql.php";
 
 if (empty($_POST['nome']) || empty($_POST['login']) || empty($_POST['telefone']) || empty($_POST['senha'])) {
 	header('Location: /cadastro');
