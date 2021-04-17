@@ -3,9 +3,8 @@ require_once "./src/app/models/EnderecoModel.php";
 require_once "./src/app/validators/EnderecoValidator.php";
 
 class EnderecoController {
-    private $endereco;
 
-    public function create() {
+    public static function create() {
         header("Location: /src/app/views/templates/html/endereco.php");
     }
 

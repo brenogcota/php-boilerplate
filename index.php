@@ -1,6 +1,7 @@
 <?php
 include('./src/app/routes/Router.php');
 include('./src/app/controllers/endereco.php');
+include('./src/app/controllers/produto.php');
 
 Route::add('/',function(){
     echo 'Welcome :-)';
@@ -21,6 +22,10 @@ Route::add('/logout', function(){
 
 Route::add('/endereco/cadastrar', function(){
     EnderecoController::create();
+}, 'get');
+
+Route::add('/produtos', function(){
+    ProdutoController::index();
 }, 'get');
 
 // POST routes
