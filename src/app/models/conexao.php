@@ -1,10 +1,25 @@
 <?php
+require_once "./src/config/connection.php";
 
-define('HOST', '127.0.0.1');
-define('USUARIO', 'root');
-define('SENHA', '');
-define('DB', 'projeto');
+class Sql {
+    private $host;
+    private $user;
+    private $pass;
+    private $db;
 
-$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ("Não foi possível conectar!");
+    function __construct() {
+        $this->host = HOST;
+        $this->user = USUARIO;
+        $this->pass = SENHA;
+        $this->db = DB;
+    }
+
+    public function connect() {
+        $conexao = mysqli_connect($this->host, $this->user, $this->pass, $this->db) or die ("Não foi possível conectar!");
+        return $conexao;
+    }
+}
+
+
 
 ?>

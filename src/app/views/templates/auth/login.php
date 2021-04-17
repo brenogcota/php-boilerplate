@@ -30,7 +30,7 @@ session_start();
           ?>
       
           <!-- Login Form -->
-          <form action="/app/controllers/login.php" method="POST">
+          <form action="/signin" method="POST">
             <input type="text" id="login" class="fadeIn.second" name="login" placeholder="Usuário">
             <input type="password" id="password" class="fadeIn.third" name="senha" placeholder="Senha" maxlength="8">
             <input type="submit" class="fadeIn.fourth" value="Entrar">
@@ -38,7 +38,7 @@ session_start();
       
           <!-- Register -->
           <div id="formFooter">
-            <a class="underlineHover" href="/app/views/templates/auth/cadastro.php">Ainda não tem uma conta? Cadastre-se!</a>
+            <a class="underlineHover" href="/cadastro">Ainda não tem uma conta? Cadastre-se!</a>
           </div>
       
         </div>

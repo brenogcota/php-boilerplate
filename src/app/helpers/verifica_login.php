@@ -1,6 +1,8 @@
 <?php
 if(!$_SESSION['login']){
-	header('Location: ../views/templates/html/index.php');
+	header('Location: /login');
 	exit();
+} else {
+	echo $_SESSION['login'];
 }
 ?>

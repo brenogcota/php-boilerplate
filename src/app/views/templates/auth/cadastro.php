@@ -21,7 +21,7 @@ session_start();
           <?php
           if(isset($_SESSION['status_cadastro'])):
           ?>
-          <p class="sucesso">Cadastro efetuado com sucesso! Faça login informando o seu usuário e senha <a href="/app/views/templates/html/index.php"> aqui</a>.</p>
+          <p class="sucesso">Cadastro efetuado com sucesso! Faça login informando o seu usuário e senha <a href="/login"> aqui</a>.</p>
           <?php
           endif;
           unset($_SESSION['status_cadastro']);
@@ -35,7 +35,7 @@ session_start();
           unset($_SESSION['usuario_existe']);
           ?>
           <!-- Register Form -->
-          <form action="/app/controllers/cadastrar.php" method="POST">
+          <form action="/signin" method="POST">
             <input type="text" id="nome" class="fadeIn.second" name="nome" placeholder="Nome">
             <input type="text" id="login" class="fadeIn.third" name="login" placeholder="Usuário">
             <input type="text" id="telefone" class="fadeIn.fourth" name="telefone" placeholder="Telefone" maxlength="11">
@@ -45,7 +45,7 @@ session_start();
       
           <!-- Login -->
           <div id="formFooter">
-            <a class="underlineHover" href="/app/views/templates/html/index.php">Já tem uma conta? Faça login aqui!</a>
+            <a class="underlineHover" href="/login">Já tem uma conta? Faça login aqui!</a>
           </div>
       
         </div>
