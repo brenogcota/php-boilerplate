@@ -5,7 +5,11 @@ require_once "./src/app/validators/EnderecoValidator.php";
 class EnderecoController {
     private $endereco;
 
-    public static function create($req) {
+    public function create() {
+        header("Location: /src/app/views/templates/html/endereco.php");
+    }
+
+    public static function store($req) {
         EnderecoValidator::validateAll($req);
 
         $endereco = new EnderecoModel();

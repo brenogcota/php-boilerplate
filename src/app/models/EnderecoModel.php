@@ -1,15 +1,12 @@
 <?php
-require_once "./src/app/models/conexao.php";
+require_once "./src/app/models/Model.php";
 require_once "./src/app/models/UsuarioModel.php";
 
-class EnderecoModel {
-    private $Sql;
-    private $con;
+class EnderecoModel extends Model {
     private $user;
 
     function __construct() {
-        $this->Sql = new Sql();
-        $this->con = $this->Sql->connect();
+        parent::__construct();
         $this->user = new UsuarioModel();
     }
 
@@ -26,5 +23,6 @@ class EnderecoModel {
             echo '', $result->error;
         }
 
+        $this->con->close();
     }
 }

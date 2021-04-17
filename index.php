@@ -19,8 +19,8 @@ Route::add('/logout', function(){
     header("Location: /src/app/controllers/logout.php");
 }, 'get');
 
-Route::add('/cadastrar/endereco', function(){
-    header("Location: /src/app/views/templates/html/endereco.php");
+Route::add('/endereco/cadastrar', function(){
+    EnderecoController::create();
 }, 'get');
 
 // POST routes
@@ -33,7 +33,7 @@ Route::add('/signup', function(){
 }, 'post');
 
 Route::add('/endereco/cadastrar', function(){
-    EnderecoController::create($_POST);
+    EnderecoController::store($_POST);
 }, 'post');
 
 

@@ -1,13 +1,10 @@
 <?php
-require_once "./src/app/models/conexao.php";
+require_once "./src/app/models/Model.php";
 
-class UsuarioModel {
-    private $Sql;
-    private $con;
+class UsuarioModel extends Model {
 
     function __construct() {
-        $this->Sql = new Sql();
-        $this->con = $this->Sql->connect();
+        parent::__construct();
     }
 
     public function getById($id) {
@@ -20,5 +17,6 @@ class UsuarioModel {
             }
         }
 
+        $this->con->close();
     }
 }
