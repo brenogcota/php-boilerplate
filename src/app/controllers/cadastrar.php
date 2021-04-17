@@ -3,7 +3,7 @@ session_start();
 include("../models/conexao.php");
 
 if (empty($_POST['nome']) || empty($_POST['login']) || empty($_POST['telefone']) || empty($_POST['senha'])) {
-    header('Location: cadastro.php');
+	header('Location: ../views/templates/auth/cadastro.php');
     exit();
 }
 
@@ -19,7 +19,7 @@ $row = mysqli_fetch_assoc($result);
 
 if($row['total'] == 1){
 	$_SESSION['usuario_existe'] = true;
-	header('Location: cadastro.php');
+	header('Location: ../views/templates/auth/cadastro.php');
 	exit();
 }
 
@@ -31,6 +31,6 @@ if($conexao->query($sql) === TRUE){
 
 $conexao->close();
 
-header('Location: cadastro.php');
+header('Location: ../views/templates/auth/cadastro.php');
 exit();
 ?>

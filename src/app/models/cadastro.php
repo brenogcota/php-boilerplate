@@ -19,7 +19,7 @@ class Cadastro {
 
         if($row['total'] == 1){
             $_SESSION['usuario_existe'] = true;
-            header('Location: cadastro.php');
+            header('Location: ../views/templates/auth/cadastro.php');
             exit();
         }
 

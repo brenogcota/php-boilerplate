@@ -5,7 +5,7 @@ include ("../models/conexao.php");
 
 
 if (empty($_POST['login']) || empty($_POST['senha'])) {
-    header('Location: index.php');
+    header('Location: ../views/templates/html/index.php');
     exit();
 }
 
@@ -21,11 +21,11 @@ $row = mysqli_num_rows($result);
 
 if($row == 1){
 	$_SESSION['login'] = $login;
-	header('Location: painel.php');
+	header('Location: ../views/templates/html/painel.php');
 	exit();
 } else{
 	$_SESSION['nao_autenticado'] = true;
-	header('Location: index.php');
+	header('Location: ../views/templates/html/index.php');
 	exit();
 }
 
