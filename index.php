@@ -29,6 +29,10 @@ Route::add('/produtos', function(){
 }, 'get');
 
 // POST routes
+Route::add('/test', function(){
+    return $_POST['id'];
+}, 'post');
+
 Route::add('/signin', function(){
     header("Location: /src/app/controllers/login.php");
 }, 'post');

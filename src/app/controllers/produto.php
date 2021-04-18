@@ -1,14 +1,18 @@
 <?php
 require_once "./src/app/models/ProdutoModel.php";
+require_once "./src/app/controllers/base.php";
 
-class ProdutoController {
+class ProdutoController extends BaseController {
 
     public static function index() {
         $produtoModel = new ProdutoModel();
         $produtos = $produtoModel->index();
-        foreach($produtos as $produto) {
-            echo $produto['nome'].'<br/>';
-        }
+
+        parent::render('html', 'produtos', $produtos);
+    }
+
+    public static function store() {
+        
     }
     
 }
