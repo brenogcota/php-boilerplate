@@ -1,8 +1,61 @@
 <?php
 session_start();
-require_once "./src/app/models/sql.php";
+require_once "./src/app/models/UsuarioModel.php";
+require_once "./src/app/controllers/base.php";
 
-if (empty($_POST['nome']) || empty($_POST['login']) || empty($_POST['telefone']) || empty($_POST['senha'])) {
+
+class UsuarioController extends BaseController{
+	private $usuario;
+
+	public static function createLogin(){
+		header("Location: ./src/app/views/templates/auth/login.php");
+	}
+
+	public static function createRegister(){
+		header("Location: ./src/app/views/templates/auth/cadastro.php");
+	}
+
+	public static function register($requisicao){
+
+
+		$usuario = new UsuarioModel();
+
+		$nome = $requisicao['nome'];
+		$login = $requisicao['login'];
+		$senha = $requisicao[md5('senha')];
+		$telefone = $requisicao['telefone'];
+
+		$usuario->register($nome, $login, $senha, $telefone);
+
+	}
+
+	public static function logar($reqlogar){
+
+		$usuario = new UsuarioModel();
+
+		$login = $reqLogar['login'];
+		$senha = $reqLogar[md5('senha')];
+
+		if (empty(['login']) || empty([md5('senha')])){
+    		header('Location: /login');
+    		exit();
+		}
+
+		$usuario->login($login, $senha);
+
+	}
+
+	public function logout(){
+        session_start();
+        session_destroy();
+        header('Location: /login');
+        exit();
+    }
+}
+
+
+
+/*if (empty($_POST['nome']) || empty($_POST['login']) || empty($_POST['telefone']) || empty($_POST['senha'])) {
 	header('Location: /cadastro');
     exit();
 }
@@ -32,5 +85,5 @@ if($conexao->query($sql) === TRUE){
 $conexao->close();
 
 header('Location: /cadastro');
-exit();
+exit();*/
 ?>

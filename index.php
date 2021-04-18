@@ -2,22 +2,23 @@
 include('./src/app/routes/Router.php');
 include('./src/app/controllers/endereco.php');
 include('./src/app/controllers/produto.php');
+include('./src/app/controllers/cadastrar.php')
 
-Route::add('/',function(){
+Route::add('/', function(){
     echo 'Welcome :-)';
 });
 
 // GET routes
-Route::add('/login', function(){
+/*Route::add('/login', function(){
     header("Location: /src/app/views/templates/auth/login.php");
 }, 'get');
 
 Route::add('/cadastro', function(){
     header("Location: /src/app/views/templates/auth/cadastro.php");
-}, 'get');
+}, 'get');*/
 
 Route::add('/logout', function(){
-    header("Location: /src/app/controllers/logout.php");
+    UsuarioController::logout();
 }, 'get');
 
 Route::add('/endereco/cadastrar', function(){
@@ -34,15 +35,23 @@ Route::add('/test', function(){
 }, 'post');
 
 Route::add('/signin', function(){
-    header("Location: /src/app/controllers/login.php");
-}, 'post');
+    UsuarioController::createLogin();
+}, 'get');
 
 Route::add('/signup', function(){
-    header("Location: /src/app/controllers/cadastrar.php");
-}, 'post');
+    UsuarioController::createRegister();
+}, 'get');
 
 Route::add('/endereco/cadastrar', function(){
     EnderecoController::store($_POST);
+}, 'post');
+
+Route::add('/usuario/cadastrar', function(){
+    UsuarioController::register($_POST);
+}, 'post');
+
+Route::add('/usuario/cadastrar', function(){
+    UsuarioController::logar($_POST);
 }, 'post');
 
 
