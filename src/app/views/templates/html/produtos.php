@@ -112,6 +112,10 @@
         width: 235px;
     }
 
+    .cart-name {
+        max-width: 209px;
+    }
+
     .cart-img {
         width: 60px;
     }
@@ -143,6 +147,11 @@
         min-height: 300px;
     }
 
+    .list-items {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
 </style>
 <body>
     <header class="_flex _ac _sb">
@@ -151,35 +160,13 @@
         <div class="mini-cart">Cart
         
             <div class="cart-items">
-                <?php if(true) { ?>
-                    <ul>
-                        <li class="cart-item">
-                            <div class="_flex _ac"><img class="cart-img" src="/src/assets/img/1.png" alt="">
-                                <div class="_flex _jc _fdc">
-                                    <p class="cart-name">Nome </p>
-                                    <span class="cart-price">R$ 99.99</span>
-                                </div>
-                            </div>
+                <ul class="list-items">
+                    
+                </ul>
 
-                            <button class="remove-to-cart">X</button>
-                        </li>
-
-                        <li class="cart-item">
-                            <div class="_flex _ac"><img class="cart-img" src="/src/assets/img/2.png" alt="">
-                                <div class="_flex _jc _fdc">
-                                    <p class="cart-name">Nome </p>
-                                    <span class="cart-price">R$ 99.99</span>
-                                </div>
-                            </div>
-
-                            <button class="remove-to-cart">X</button>
-                        </li>
-                    </ul>
-                <?php } else { ?>
-                    <div class="cart-empty _flex _ac _jc">
-                        <span>:( Seu carrinho está vazio</span>
-                    </div>
-                <?php } ?>
+                <div class="cart-empty _flex _ac _jc">
+                    <span>:( Seu carrinho está vazio</span>
+                </div>
 
                 <div class="summary-box _flex _ac _sb _fdc">
                     <div class="summary-items _flex _ac _sb">
@@ -195,7 +182,7 @@
         <ul class="grid">
             <?php foreach($data as $produto) { ?>
                 <li class="shelf" data-id="<?php echo $produto['id_produto'] ?>">
-                    <img class="shelf-img" src="/src/assets/img/<?php echo $produto['imagem'] ?>" alt="<?php echo $produto['nome'] ?>">
+                    <img class="shelf-img" src="/src/assets/img/<?php echo $produto['imagem'] ?>" alt="<?php echo $produto['nome'] ?>" data-src="/src/assets/img/<?php echo $produto['imagem'] ?>">
                     <h4 class="shelf-name"><?php echo $produto['nome'] ?></h4>
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
 
@@ -217,42 +204,66 @@
     let buttons = document.querySelectorAll('.add-to-cart');
     Array.from(buttons).map(button => {
         button.addEventListener('click', (e) => {
-            let id =  e.target.parentNode.dataset.id;
-            let quantidade = e.target.parentNode.querySelector('.shelf-qtd').value;
-            let pagamento = e.target.parentNode.querySelector('.shelf-payment').value;
+            // let id =  e.target.parentNode.dataset.id;
+            // let quantidade = e.target.parentNode.querySelector('.shelf-qtd').value;
+            // let pagamento = e.target.parentNode.querySelector('.shelf-payment').value;
             
-            const dt = {
-                id,
-                quantidade,
-                pagamento
-            }
+            // const dt = {
+            //     id,
+            //     quantidade,
+            //     pagamento
+            // }
 
-            let formBody = [];
-            for (let property in dt) {
-                let encodedKey = encodeURIComponent(property);
-                let encodedValue = encodeURIComponent(dt[property]);
-                formBody.push(encodedKey + "=" + encodedValue);
-            }
-            let form = formBody.join("&");
+            // let formBody = [];
+            // for (let property in dt) {
+            //     let encodedKey = encodeURIComponent(property);
+            //     let encodedValue = encodeURIComponent(dt[property]);
+            //     formBody.push(encodedKey + "=" + encodedValue);
+            // }
+            // let form = formBody.join("&");
 
-            fetch('/test', 
-                 {
-                     method: 'POST',
-                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                    }, 
-                     body: form 
-                  })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    console.log(data);
-                });
+            // fetch('/test', 
+            //      {
+            //          method: 'POST',
+            //          headers: {
+            //             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            //         }, 
+            //          body: form 
+            //       })
+            //     .then(function(response) {
+            //         return response.json();
+            //     })
+            //     .then(function(data) {
+            //         console.log(data);
+            //     });
+
+            let id =  e.target.parentNode.dataset.id;
+            let image = e.target.parentNode.querySelector('.shelf-img').dataset.src;
+            let name = e.target.parentNode.querySelector('.shelf-name').textContent;
+            let price = e.target.parentNode.querySelector('.shelf-price').textContent;
+
+            
+            const listItems = document.querySelector('.list-items');
+
+            let $li = document.createElement('li')
+            $li.innerHTML = `
+                                <div class="_flex _ac"><img class="cart-img" src="${image}" alt="">
+                                    <div class="_flex _jc _fdc">
+                                        <p class="cart-name">${name}</p>
+                                        <span class="cart-price">${price}</span>
+                                    </div>
+                                </div>
+
+                                <button class="remove-to-cart">X</button>
+                                `;
+
+            listItems.appendChild($li);
+            document.querySelector('.cart-empty').style.display = 'none';
+
+            
         })
     })
 
-    
     let minicart = document.querySelector('.mini-cart')
 
     minicart.addEventListener('click', (e) => {
@@ -261,6 +272,7 @@
         cart.style.display = 'block'
         
     })
+
     
 </script>
 </html>

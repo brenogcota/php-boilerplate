@@ -2,7 +2,7 @@
 include('./src/app/routes/Router.php');
 include('./src/app/controllers/endereco.php');
 include('./src/app/controllers/produto.php');
-include('./src/app/controllers/cadastrar.php')
+include('./src/app/controllers/cadastrar.php');
 
 Route::add('/', function(){
     echo 'Welcome :-)';
