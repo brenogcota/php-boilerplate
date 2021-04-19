@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 require_once "./src/app/models/UsuarioModel.php";
 
 if (empty($_POST['login']) || empty($_POST['senha'])) {
@@ -27,5 +27,5 @@ if($row == 1){
 	exit();
 }
 
-
+*/
 ?>
