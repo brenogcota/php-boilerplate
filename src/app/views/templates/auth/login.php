@@ -30,7 +30,7 @@ session_start();
           ?>
       
           <!-- Login Form -->
-          <form action="/signin" method="POST">
+          <form action="/usuario/logar" method="POST">
             <input type="text" id="login" class="fadeIn.second" name="login" placeholder="Usuário">
             <input type="password" id="password" class="fadeIn.third" name="senha" placeholder="Senha" maxlength="8">
             <input type="submit" class="fadeIn.fourth" value="Entrar">

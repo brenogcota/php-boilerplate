@@ -22,7 +22,7 @@ class UsuarioModel extends Model {
             exit();
         }
 
-        $sql = "INSERT INTO usuario(nome, login, senha, telefone, data_cadastro) VALUES ('$nome', '$login', '$senha', '$telefone', NOW())";
+        $sql = "INSERT INTO usuario(nome, login, senha, telefone, data_cadastro) VALUES ('$nome', '$login', md5('$senha'), '$telefone', NOW())";
 
         if($this->con->query($sql) === TRUE){
             $_SESSION['status_cadastro'] = true;
@@ -35,13 +35,14 @@ class UsuarioModel extends Model {
     }
 
     public function login($login, $senha){
-        $loginquery = "SELECT id_usuario, login FROM usuario WHERE login = '{$login}' and senha = 'md5{$senha}')";
+
+        $loginquery = "SELECT count(*) as totallog FROM usuario WHERE login = '$login' and senha = md5('$senha')";
         $reslogin = $this->con->query($loginquery);
         $rowlogin = $reslogin->fetch_assoc();
 
-        if($rowlogin == 1){
+        if($rowlogin['totallog'] == 1){
             $_SESSION['login'] = $login;
-            header('Location: /painel');
+            header('Location: /usuario/painel');
             exit();
         } else{
             $_SESSION['nao_autenticado'] = true;

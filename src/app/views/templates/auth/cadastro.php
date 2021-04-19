@@ -35,7 +35,7 @@ session_start();
           unset($_SESSION['usuario_existe']);
           ?>
           <!-- Register Form -->
-          <form action="/signin" method="POST">
+          <form action="/usuario/cadastrar" method="POST">
             <input type="text" id="nome" class="fadeIn.second" name="nome" placeholder="Nome">
             <input type="text" id="login" class="fadeIn.third" name="login" placeholder="Usuário">
             <input type="text" id="telefone" class="fadeIn.fourth" name="telefone" placeholder="Telefone" maxlength="11">

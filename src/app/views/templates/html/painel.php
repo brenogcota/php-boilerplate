@@ -12,7 +12,7 @@ include('../../../helpers/verifica_login.php');
 </head>
 <body>
     <!--  BACKGROUND  -->
-	<div class="background">
+	<div class="background" action="/usuario/painel">
 		
 		<!-- CART -->
 		<button class="cart"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/shopping-cart--v1.png"/></button>
@@ -103,6 +103,6 @@ include('../../../helpers/verifica_login.php');
 
     <script src="../js/index.js"></script>
     <script src="../service/data.json"></script>
-    <h2><a href="logout.php">Sair</a></h2>
+    <h2><a action="/logout">Sair</a></h2>
 </body>
 </html>
