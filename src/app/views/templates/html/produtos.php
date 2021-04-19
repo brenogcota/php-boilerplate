@@ -46,7 +46,7 @@
         height: auto;
     }
 
-    .add-to-cart {
+    .add-to-cart, .buy-button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -61,12 +61,12 @@
         opacity: 0.8;
     }
 
-    .add-to-cart:hover {
+    .add-to-cart:hover, .buy-button:hover {
         opacity: 1;
         transition: all 0.5s;
     }
 
-    .shelf-payment {
+    .shelf-payment, .shelf-qtd {
         box-sizing: border-box;
         margin: 0.4rem 0;
         border: none;
@@ -75,8 +75,122 @@
         border: 4px;
     }
 
+    header {
+        padding: 0 30px;
+    }
+
+    ._flex {
+        display: flex;
+    } ._jc {
+        justify-content: center;
+    } ._ac {
+        align-items: center;
+    } ._sb {
+        justify-content: space-between;
+    } ._fdc {
+        flex-direction: column;
+    }
+
+    .cart-items {
+        display: none;
+        position: absolute;
+        right: 35px;
+        min-width: 235px;
+        background: #FFF;
+        border: 1px solid #eee;
+    }
+
+    .cart-items ul {
+        padding-left: 0;
+    }
+
+    .cart-item {
+        border: 1px solid #eee;
+        border-radius: 5%;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        width: 235px;
+    }
+
+    .cart-img {
+        width: 60px;
+    }
+
+    .remove-to-cart {
+        position: relative;
+        right: 0px;
+        top: -70px;
+        left: 87%;
+    }
+
+    .summary-box {
+        margin-top: 0.6rem;
+        border-top: 1px solid #eee;
+        padding: 0.5rem;
+    }
+
+    .summary-items {
+        width: 100%
+    }
+
+    .buy-button {
+        float: right;
+        margin: 1rem 0;
+        margin-left: auto;
+    }
+
+    .cart-empty {
+        min-height: 300px;
+    }
+
 </style>
 <body>
+    <header class="_flex _ac _sb">
+        <h1>Shop</h1>
+
+        <div class="mini-cart">Cart
+        
+            <div class="cart-items">
+                <?php if(true) { ?>
+                    <ul>
+                        <li class="cart-item">
+                            <div class="_flex _ac"><img class="cart-img" src="/src/assets/img/1.png" alt="">
+                                <div class="_flex _jc _fdc">
+                                    <p class="cart-name">Nome </p>
+                                    <span class="cart-price">R$ 99.99</span>
+                                </div>
+                            </div>
+
+                            <button class="remove-to-cart">X</button>
+                        </li>
+
+                        <li class="cart-item">
+                            <div class="_flex _ac"><img class="cart-img" src="/src/assets/img/2.png" alt="">
+                                <div class="_flex _jc _fdc">
+                                    <p class="cart-name">Nome </p>
+                                    <span class="cart-price">R$ 99.99</span>
+                                </div>
+                            </div>
+
+                            <button class="remove-to-cart">X</button>
+                        </li>
+                    </ul>
+                <?php } else { ?>
+                    <div class="cart-empty _flex _ac _jc">
+                        <span>:( Seu carrinho está vazio</span>
+                    </div>
+                <?php } ?>
+
+                <div class="summary-box _flex _ac _sb _fdc">
+                    <div class="summary-items _flex _ac _sb">
+                        <span>Total: </span>
+                        <strong>R$ 99.99</strong>
+                    </div>
+                    <button class="buy-button">Fechar pedido</button>
+                </div>
+            </div>
+        </div>
+    </header>
     <section class="search-result">
         <ul class="grid">
             <?php foreach($data as $produto) { ?>
@@ -85,7 +199,12 @@
                     <h4 class="shelf-name"><?php echo $produto['nome'] ?></h4>
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
 
-                    <input class="shelf-payment" name="pagamento" placeholder="Forma de pagamento"/>
+                    <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
+                    <select class="shelf-payment" name="pagamento">
+                        <option value="">Forma de pagamento</option>
+                        <option value="cartão">Cartão</option>
+                        <option value="cartão">Em dinheiro</option>
+                    </select>
 
                     <button class="add-to-cart">Adicionar ao carrinho</button>
                 </li>
@@ -99,9 +218,22 @@
     Array.from(buttons).map(button => {
         button.addEventListener('click', (e) => {
             let id =  e.target.parentNode.dataset.id;
-            var encodedKey = encodeURIComponent('id');
-            var encodedValue = encodeURIComponent(id);
-            var form = encodedKey + "=" + encodedValue;
+            let quantidade = e.target.parentNode.querySelector('.shelf-qtd').value;
+            let pagamento = e.target.parentNode.querySelector('.shelf-payment').value;
+            
+            const dt = {
+                id,
+                quantidade,
+                pagamento
+            }
+
+            let formBody = [];
+            for (let property in dt) {
+                let encodedKey = encodeURIComponent(property);
+                let encodedValue = encodeURIComponent(dt[property]);
+                formBody.push(encodedKey + "=" + encodedValue);
+            }
+            let form = formBody.join("&");
 
             fetch('/test', 
                  {
@@ -121,7 +253,14 @@
     })
 
     
+    let minicart = document.querySelector('.mini-cart')
 
+    minicart.addEventListener('click', (e) => {
+        let cart = document.querySelector('.cart-items')
+        //cart.style.display == 'none' ? cart.style.display = 'block' : cart.style.display = 'none'
+        cart.style.display = 'block'
+        
+    })
     
 </script>
 </html>

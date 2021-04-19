@@ -30,7 +30,7 @@ Route::add('/produtos', function(){
 
 // POST routes
 Route::add('/test', function(){
-    return $_POST['id'];
+    return $_POST['pagamento'];
 }, 'post');
 
 Route::add('/signin', function(){
