@@ -277,18 +277,30 @@
                     if(items.length < 1) {
                         document.querySelector('.cart-empty').style.display = 'flex';
                         document.querySelector('.summary-total').textContent = '00.00'
+                    } else {
+                        let summaryTotal = Array.from(items).reduce((acc, cur) => {
+                            return Number(acc) + Number(cur.dataset.partialValue)
+                        }, 0)
+
+                        document.querySelector('.summary-total').textContent = summaryTotal;
                     }
                 })
             })
 
             let buyButton = document.querySelector('.buy-button')
-        
-            let products = Array.from(items).reduce((acc, cur) => {
-                let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, parcial: cur.dataset.price, total: cur.dataset.partialValue };
-                return [...acc, obj]
-            }, [])
 
             buyButton.addEventListener('click', function() {
+                let items = document.querySelectorAll('.list-items li');
+                let products = Array.from(items).reduce((acc, cur) => {
+                    let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, parcial: cur.dataset.price, total: cur.dataset.partialValue };
+                    return [...acc, obj]
+                }, [])
+
+                console.log('pdt', products)
+                if(products.length < 1) {
+                    alert('Seu carrinho está vazio!')
+                    return;
+                }
                 fetch('/test', 
                      {
                          method: 'POST',
