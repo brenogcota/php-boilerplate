@@ -288,7 +288,7 @@
                             return Number(acc) + Number(cur.dataset.partialValue)
                         }, 0)
 
-                        document.querySelector('.summary-total').textContent = summaryTotal;
+                        document.querySelector('.summary-total').textContent = Number(summaryTotal).toFixed(2)
                     }
                 })
             })
