@@ -16,45 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario` (
-  `id_usuario` int NOT NULL AUTO_INCREMENT,
-  `login` varchar(20) NOT NULL,
-  `senha` varchar(32) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `telefone` varchar(11) NOT NULL,
-  `data_cadastro` datetime NOT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'analu','e10adc3949ba59abbe56e057f20f883e','Ana Luiza','3399223344','2021-03-27 13:03:25');
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2021-04-17 19:04:34
-
---
 -- Table structure for table `categoria`
 --
 
@@ -65,7 +26,7 @@ CREATE TABLE `categoria` (
   `id_categoria` int NOT NULL AUTO_INCREMENT,
   `nome_categoria` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +57,7 @@ CREATE TABLE `endereco` (
   PRIMARY KEY (`id_endereco`),
   KEY `fk_useradress` (`id_usuario`),
   CONSTRAINT `fk_useradress` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +80,7 @@ CREATE TABLE `pagamento` (
   `id_pagamento` int NOT NULL AUTO_INCREMENT,
   `tipo_pagamento` varchar(30) NOT NULL,
   PRIMARY KEY (`id_pagamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,6 +91,36 @@ LOCK TABLES `pagamento` WRITE;
 /*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
 INSERT INTO `pagamento` VALUES (1,'Cartão de crédito/débito'),(2,'Dinheiro');
 /*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pedido`
+--
+
+DROP TABLE IF EXISTS `pedido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pedido` (
+  `id_pedido` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `id_pagamento` int NOT NULL,
+  `valorTotal` decimal(7,2) NOT NULL,
+  `data_cadastro` datetime NOT NULL,
+  PRIMARY KEY (`id_pedido`),
+  KEY `fk_peduser` (`id_usuario`),
+  KEY `fk_pedpag` (`id_pagamento`),
+  CONSTRAINT `fk_pedpag` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamento` (`id_pagamento`),
+  CONSTRAINT `fk_peduser` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido`
+--
+
+LOCK TABLES `pedido` WRITE;
+/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -148,7 +139,7 @@ CREATE TABLE `produto` (
   PRIMARY KEY (`id_produto`),
   KEY `fk_categoria` (`id_categoria`),
   CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,12 +162,15 @@ DROP TABLE IF EXISTS `produto_pedido`;
 CREATE TABLE `produto_pedido` (
   `id_prodped` int NOT NULL AUTO_INCREMENT,
   `id_produto` int NOT NULL,
+  `id_pedido` int NOT NULL,
   `quantidade` int NOT NULL,
   `valortotal` decimal(7,2) NOT NULL,
   PRIMARY KEY (`id_prodped`),
-  KEY `fk_prodped` (`id_produto`),
-  CONSTRAINT `fk_prodped` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  KEY `fk_pprod` (`id_produto`),
+  KEY `fk_pped` (`id_pedido`),
+  CONSTRAINT `fk_pped` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`),
+  CONSTRAINT `fk_pprod` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,33 +183,40 @@ LOCK TABLES `produto_pedido` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `pedido`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `pedido`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pedido` (
-  `id_pedido` int NOT NULL AUTO_INCREMENT,
-  `id_usuario` int NOT NULL,
-  `id_prodped` int NOT NULL,
-  `id_pagamento` int NOT NULL,
+CREATE TABLE `usuario` (
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `login` varchar(20) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `telefone` varchar(11) NOT NULL,
   `data_cadastro` datetime NOT NULL,
-  PRIMARY KEY (`id_pedido`),
-  KEY `fk_produtoped` (`id_prodped`),
-  KEY `fk_user` (`id_usuario`),
-  KEY `fk_pagamento` (`id_pagamento`),
-  CONSTRAINT `fk_pagamento` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamento` (`id_pagamento`),
-  CONSTRAINT `fk_produtoped` FOREIGN KEY (`id_prodped`) REFERENCES `produto_pedido` (`id_prodped`),
-  CONSTRAINT `fk_user` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `pedido`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `pedido` WRITE;
-/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'analuiza','25d55ad283aa400af464c76d713c07ad','Ana Luiza','33999223344','2021-04-19 19:04:45'),(2,'manoel','25d55ad283aa400af464c76d713c07ad','Manoel José','33999223344','2021-04-19 20:10:11'),(3,'marilene','25d55ad283aa400af464c76d713c07ad','Marilene Souza','33999223344','2021-04-19 20:25:26');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-04-21 19:00:46
