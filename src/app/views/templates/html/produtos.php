@@ -262,19 +262,19 @@
 
             document.querySelector('.cart-items').style.display = 'block';
 
+            items = document.querySelectorAll('.list-items li')
             let summaryTotal = Array.from(items).reduce((acc, cur) => {
                 return Number(acc) + Number(cur.dataset.partialValue)
-            }, [])
+            }, 0)
 
             document.querySelector('.summary-total').textContent = Number(summaryTotal).toFixed(2)
 
             let removeBtns = document.querySelectorAll('.remove-to-cart')
             Array.from(removeBtns).map((btn, idx) => {
-                let items = document.querySelectorAll('.list-items li')
-                btn.addEventListener('click', function() {
-                    items[idx].remove()
-                    console.log(idx)
-                    if(items.length <= 1) {
+                btn.addEventListener('click', function(e) {
+                    e.target.parentNode.remove()
+                    let items = document.querySelectorAll('.list-items li')
+                    if(items.length < 1) {
                         document.querySelector('.cart-empty').style.display = 'flex';
                         document.querySelector('.summary-total').textContent = '00.00'
                     }
@@ -284,7 +284,7 @@
             let buyButton = document.querySelector('.buy-button')
         
             let products = Array.from(items).reduce((acc, cur) => {
-                let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, total: cur.dataset.partialValue };
+                let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, parcial: cur.dataset.price, total: cur.dataset.partialValue };
                 return [...acc, obj]
             }, [])
 
@@ -319,8 +319,6 @@
         } else {
             cart.style.display = 'block' 
         }
-        //cart.style.display == 'none' ? cart.style.display = 'block' : cart.style.display = 'none'
-        
         
     })
     
