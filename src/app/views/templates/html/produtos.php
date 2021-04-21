@@ -292,40 +292,39 @@
                     }
                 })
             })
-
-            let buyButton = document.querySelector('.buy-button')
-
-            buyButton.addEventListener('click', function() {
-                let items = document.querySelectorAll('.list-items li');
-                let payment = document.querySelector('.cart-payment').value;
-
-                let products = Array.from(items).reduce((acc, cur) => {
-                    let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: payment, parcial: cur.dataset.price, total: cur.dataset.partialValue };
-                    return [...acc, obj]
-                }, [])
-
-                if(products.length < 1) {
-                    alert('Seu carrinho está vazio!')
-                    return;
-                }
-                fetch('/test', 
-                     {
-                         method: 'POST',
-                         headers: {
-                            'Content-Type': 'application/json'
-                        }, 
-                         body: JSON.stringify(products)
-                      })
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(data) {
-                        console.log(data);
-                    });
-            })
-            
             
         })
+    })
+
+    let buyButton = document.querySelector('.buy-button')
+
+    buyButton.addEventListener('click', function() {
+        let items = document.querySelectorAll('.list-items li');
+        let payment = document.querySelector('.cart-payment').value;
+
+        let products = Array.from(items).reduce((acc, cur) => {
+            let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: payment, parcial: cur.dataset.price, total: cur.dataset.partialValue };
+            return [...acc, obj]
+        }, [])
+
+        if(products.length < 1) {
+            alert('Seu carrinho está vazio!')
+            return;
+        }
+        fetch('/test', 
+                {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                }, 
+                    body: JSON.stringify(products)
+                })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+            });
     })
 
     let minicart = document.querySelector('.mini-cart')
