@@ -382,6 +382,31 @@
                 let aEL = document.querySelector(".share");
                 aEL.setAttribute("href", encodedUri);
                 aEL.setAttribute("download", "lista.csv");
+
+                // aEL.addEventListener('click', async function(e) {
+                //     e.preventDefault();
+                //     var file = new File([csv], "lista.csv", {type: 'text/csv'});
+                //     var filesArray = [file];
+                //     e.target.textContent = 'carregando..'
+
+                //     if(navigator.canShare && navigator.canShare({ files: filesArray })) {
+
+                //         try {
+                //             await navigator.share({
+                //                 text: 'lista de compras',
+                //                 files: filesArray,
+                //                 title: 'Lista de compras',
+                //                 url: 'https://google.com'
+                //             });
+
+                //             aEL.textContent = 'Compartilhar'
+                //         } catch(e) {
+                //             console.log(e);
+                //             aEL.textContent = 'Ops..'
+                //         } 
+                //     }
+                // })
+                
             });
     })
 
@@ -389,7 +414,7 @@
 
     overlay.addEventListener('click', (e) => {
         if(e.target.classList.contains('modal-overlay')) {
-            overlay.style.display = 'none'
+            overlay.classList.remove('open')
         }
     })
 
