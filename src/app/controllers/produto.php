@@ -11,8 +11,8 @@ class ProdutoController extends BaseController {
         parent::render('html', 'produtos', $produtos);
     }
 
-    public static function store($req) {
-        
+    public static function store($data) {
+        echo json_decode($data, true);
     }
     
 }

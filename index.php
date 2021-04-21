@@ -31,7 +31,8 @@ Route::add('/produtos', function(){
 
 // POST routes
 Route::add('/test', function(){
-    return $_POST['pagamento'];
+    $data = json_encode(file_get_contents('php://input'), true);
+    ProdutoController::store($data);
 }, 'post');
 
 Route::add('/endereco/cadastrar', function(){

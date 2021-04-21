@@ -22,6 +22,12 @@
         margin: 0 auto;
     }
 
+    @media (max-width: 960px) {
+        .grid {
+            grid-template-columns: repeat(1, 90%);
+        }
+    }
+
     .shelf {
         display: flex;
         flex-direction: column;
@@ -98,6 +104,7 @@
         min-width: 235px;
         background: #FFF;
         border: 1px solid #eee;
+        z-index: 999;
     }
 
     .cart-items ul {
@@ -171,7 +178,7 @@
                 <div class="summary-box _flex _ac _sb _fdc">
                     <div class="summary-items _flex _ac _sb">
                         <span>Total: </span>
-                        <strong>R$ 99.99</strong>
+                        <strong class="summary-total">R$ 00.00</strong>
                     </div>
                     <button class="buy-button">Fechar pedido</button>
                 </div>
@@ -188,9 +195,8 @@
 
                     <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
                     <select class="shelf-payment" name="pagamento">
-                        <option value="">Forma de pagamento</option>
-                        <option value="cartão">Cartão</option>
-                        <option value="cartão">Em dinheiro</option>
+                        <option value="1">Cartão</option>
+                        <option value="2">Em dinheiro</option>
                     </select>
 
                     <button class="add-to-cart">Adicionar ao carrinho</button>
@@ -204,44 +210,32 @@
     let buttons = document.querySelectorAll('.add-to-cart');
     Array.from(buttons).map(button => {
         button.addEventListener('click', (e) => {
-            // let id =  e.target.parentNode.dataset.id;
-            // let quantidade = e.target.parentNode.querySelector('.shelf-qtd').value;
-            // let pagamento = e.target.parentNode.querySelector('.shelf-payment').value;
-            
-            // const dt = {
-            //     id,
-            //     quantidade,
-            //     pagamento
-            // }
-
-            // let formBody = [];
-            // for (let property in dt) {
-            //     let encodedKey = encodeURIComponent(property);
-            //     let encodedValue = encodeURIComponent(dt[property]);
-            //     formBody.push(encodedKey + "=" + encodedValue);
-            // }
-            // let form = formBody.join("&");
-
-            // fetch('/test', 
-            //      {
-            //          method: 'POST',
-            //          headers: {
-            //             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            //         }, 
-            //          body: form 
-            //       })
-            //     .then(function(response) {
-            //         return response.json();
-            //     })
-            //     .then(function(data) {
-            //         console.log(data);
-            //     });
 
             let id =  e.target.parentNode.dataset.id;
             let image = e.target.parentNode.querySelector('.shelf-img').dataset.src;
             let name = e.target.parentNode.querySelector('.shelf-name').textContent;
             let price = e.target.parentNode.querySelector('.shelf-price').textContent;
+            let qtd = e.target.parentNode.querySelector('.shelf-qtd').value;
+            let payment = e.target.parentNode.querySelector('.shelf-payment').value;
 
+            if(qtd < 1) {
+                alert('quantidade inválida!')
+                return;
+            }
+
+            let items = document.querySelectorAll('.list-items li')
+            const isInCart = Array.from(items).filter(item => {
+                return item.dataset.id == id;
+            })
+
+            if (isInCart.length > 0) {
+                alert('Esse produto já foi adicionado ao carrinho')
+
+                return
+            }
+
+            let partialValue = Number(price) * Number(qtd);
+            partialValue = partialValue.toFixed(2);
             
             const listItems = document.querySelector('.list-items');
 
@@ -250,16 +244,67 @@
                                 <div class="_flex _ac"><img class="cart-img" src="${image}" alt="">
                                     <div class="_flex _jc _fdc">
                                         <p class="cart-name">${name}</p>
-                                        <span class="cart-price">${price}</span>
+                                        <span class="cart-price">R$ ${partialValue}</span>
+                                        <span class="cart-qtd">${qtd}x</span>
                                     </div>
                                 </div>
 
                                 <button class="remove-to-cart">X</button>
                                 `;
+            $li.dataset.id = id;
+            $li.dataset.partialValue = partialValue;
+            $li.dataset.qtd = qtd;
+            $li.dataset.pagamento = payment;
+
 
             listItems.appendChild($li);
             document.querySelector('.cart-empty').style.display = 'none';
 
+            document.querySelector('.cart-items').style.display = 'block';
+
+            let summaryTotal = Array.from(items).reduce((acc, cur) => {
+                return Number(acc) + Number(cur.dataset.partialValue)
+            }, [])
+
+            document.querySelector('.summary-total').textContent = Number(summaryTotal).toFixed(2)
+
+            let removeBtns = document.querySelectorAll('.remove-to-cart')
+            Array.from(removeBtns).map((btn, idx) => {
+                let items = document.querySelectorAll('.list-items li')
+                btn.addEventListener('click', function() {
+                    items[idx].remove()
+                    console.log(idx)
+                    if(items.length <= 1) {
+                        document.querySelector('.cart-empty').style.display = 'flex';
+                        document.querySelector('.summary-total').textContent = '00.00'
+                    }
+                })
+            })
+
+            let buyButton = document.querySelector('.buy-button')
+        
+            let products = Array.from(items).reduce((acc, cur) => {
+                let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, total: cur.dataset.partialValue };
+                return [...acc, obj]
+            }, [])
+
+            buyButton.addEventListener('click', function() {
+                fetch('/test', 
+                     {
+                         method: 'POST',
+                         headers: {
+                            'Content-Type': 'application/json'
+                        }, 
+                         body: JSON.stringify(products)
+                      })
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        console.log(data);
+                    });
+            })
+            
             
         })
     })
@@ -268,11 +313,16 @@
 
     minicart.addEventListener('click', (e) => {
         let cart = document.querySelector('.cart-items')
+
+        if(e.target.classList.contains('mini-cart') && cart.style.display == 'block' ) {
+            cart.style.display = 'none'
+        } else {
+            cart.style.display = 'block' 
+        }
         //cart.style.display == 'none' ? cart.style.display = 'block' : cart.style.display = 'none'
-        cart.style.display = 'block'
+        
         
     })
-
     
 </script>
 </html>

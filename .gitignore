@@ -1,2 +1,4 @@
 ./commit.sh
 ./init.sh
+
+./config/connection.php
