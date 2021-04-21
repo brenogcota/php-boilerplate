@@ -72,13 +72,19 @@
         transition: all 0.5s;
     }
 
-    .shelf-payment, .shelf-qtd {
+    .cart-payment, .shelf-qtd {
         box-sizing: border-box;
         margin: 0.4rem 0;
         border: none;
         outline: none;
         padding: 0.5rem;
         border: 4px;
+    }
+
+    .cart-payment {
+        margin-right: auto;
+        padding-left: 0;
+        border: 1px solid #ccc;
     }
 
     header {
@@ -176,6 +182,12 @@
                 </div>
 
                 <div class="summary-box _flex _ac _sb _fdc">
+
+                    <select class="cart-payment" name="pagamento">
+                        <option value="2">Em dinheiro</option>
+                        <option value="1">Cartão</option>
+                    </select>
+
                     <div class="summary-items _flex _ac _sb">
                         <span>Total: </span>
                         <strong class="summary-total">R$ 00.00</strong>
@@ -194,10 +206,6 @@
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
 
                     <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
-                    <select class="shelf-payment" name="pagamento">
-                        <option value="1">Cartão</option>
-                        <option value="2">Em dinheiro</option>
-                    </select>
 
                     <button class="add-to-cart">Adicionar ao carrinho</button>
                 </li>
@@ -216,7 +224,6 @@
             let name = e.target.parentNode.querySelector('.shelf-name').textContent;
             let price = e.target.parentNode.querySelector('.shelf-price').textContent;
             let qtd = e.target.parentNode.querySelector('.shelf-qtd').value;
-            let payment = e.target.parentNode.querySelector('.shelf-payment').value;
 
             if(qtd < 1) {
                 alert('quantidade inválida!')
@@ -254,7 +261,6 @@
             $li.dataset.id = id;
             $li.dataset.partialValue = partialValue;
             $li.dataset.qtd = qtd;
-            $li.dataset.pagamento = payment;
 
 
             listItems.appendChild($li);
@@ -291,12 +297,13 @@
 
             buyButton.addEventListener('click', function() {
                 let items = document.querySelectorAll('.list-items li');
+                let payment = document.querySelector('.cart-payment').value;
+
                 let products = Array.from(items).reduce((acc, cur) => {
-                    let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, parcial: cur.dataset.price, total: cur.dataset.partialValue };
+                    let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: payment, parcial: cur.dataset.price, total: cur.dataset.partialValue };
                     return [...acc, obj]
                 }, [])
 
-                console.log('pdt', products)
                 if(products.length < 1) {
                     alert('Seu carrinho está vazio!')
                     return;
