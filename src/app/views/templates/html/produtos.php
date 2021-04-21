@@ -52,7 +52,7 @@
         height: auto;
     }
 
-    .add-to-cart, .buy-button, .modal button {
+    .add-to-cart, .buy-button, .share {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -67,7 +67,7 @@
         opacity: 0.8;
     }
 
-    .add-to-cart:hover, .buy-button:hover, .modal button:hover {
+    .add-to-cart:hover, .buy-button:hover, .share:hover {
         opacity: 1;
         transition: all 0.5s;
     }
@@ -254,7 +254,7 @@
     <div class="modal-overlay">
        <div class="modal">
         <h2>Sua lista está pronta</h2>
-        <button class="share">Compartilhar</button>
+        <a href="#" class="share">Compartilhar</a>
        </div>
     <div>
     
@@ -369,6 +369,19 @@
             })
             .then(function(data) {
                 document.querySelector('.modal-overlay').classList.add('open')
+
+                const items = data;
+                const replacer = (key, value) => value === null ? '' : value 
+                const header = Object.keys(items[0])
+                const csv = "data:text/csv;charset=utf-8,"+[
+                    header.join(','),
+                    ...items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+                ].join('\r\n')
+
+                let encodedUri = encodeURI(csv);
+                let aEL = document.querySelector(".share");
+                aEL.setAttribute("href", encodedUri);
+                aEL.setAttribute("download", "lista.csv");
             });
     })
 
