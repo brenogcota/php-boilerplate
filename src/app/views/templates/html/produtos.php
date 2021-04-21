@@ -165,10 +165,24 @@
         overflow-y: auto;
     }
 
+    .shelf.is-invisible {
+        display: none;
+    }
+
+    .search-bar {
+        padding: 0.5rem 1rem;
+        background: #ddd;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+        outline: none;
+    }
+
 </style>
 <body>
     <header class="_flex _ac _sb">
         <h1>Shop</h1>
+
+        <input type="text" placeholder="Buscar" class="search-bar" />
 
         <div class="mini-cart">Cart
         
@@ -200,7 +214,7 @@
     <section class="search-result">
         <ul class="grid">
             <?php foreach($data as $produto) { ?>
-                <li class="shelf" data-id="<?php echo $produto['id_produto'] ?>">
+                <li class="shelf" data-id="<?php echo $produto['id_produto'] ?>" data-name="<?php echo $produto['nome'] ?>">
                     <img class="shelf-img" src="/src/assets/img/<?php echo $produto['imagem'] ?>" alt="<?php echo $produto['nome'] ?>" data-src="/src/assets/img/<?php echo $produto['imagem'] ?>">
                     <h4 class="shelf-name"><?php echo $produto['nome'] ?></h4>
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
@@ -338,6 +352,24 @@
             cart.style.display = 'block' 
         }
         
+    })
+
+    let searchBar = document.querySelector('.search-bar')
+
+    searchBar.addEventListener('keyup', (e) => {
+        let value = e.target.value.toUpperCase()
+        let items = document.querySelectorAll('.grid .shelf')
+
+        Array.from(items).forEach(item => {
+            let name = item.dataset.name.toUpperCase()
+            
+            if(name.startsWith(value)) {
+                item.classList.remove('is-invisible')
+            } else {
+                item.classList.add('is-invisible')
+            }
+        })
+
     })
     
 </script>
