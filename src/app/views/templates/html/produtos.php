@@ -52,7 +52,7 @@
         height: auto;
     }
 
-    .add-to-cart, .buy-button {
+    .add-to-cart, .buy-button, .modal button {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -67,7 +67,7 @@
         opacity: 0.8;
     }
 
-    .add-to-cart:hover, .buy-button:hover {
+    .add-to-cart:hover, .buy-button:hover, .modal button:hover {
         opacity: 1;
         transition: all 0.5s;
     }
@@ -110,7 +110,7 @@
         min-width: 235px;
         background: #FFF;
         border: 1px solid #eee;
-        z-index: 999;
+        z-index: 250;
     }
 
     .cart-items ul {
@@ -177,6 +177,29 @@
         outline: none;
     }
 
+    .modal-overlay {
+        display: none;
+        width: 99vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+    }
+
+    .modal-overlay.open {
+        display: flex;
+    }
+
+    .modal {
+        padding: 1.5rem;
+        background: #FFF;
+    }
+
 </style>
 <body>
     <header class="_flex _ac _sb">
@@ -226,6 +249,14 @@
             <?php } ?>
         </ul>
     </section>
+
+
+    <div class="modal-overlay">
+       <div class="modal">
+        <h2>Sua lista está pronta</h2>
+        <button class="share">Compartilhar</button>
+       </div>
+    <div>
     
 </body>
 <script>
@@ -337,8 +368,16 @@
                 return response.json();
             })
             .then(function(data) {
-                console.log(data);
+                document.querySelector('.modal-overlay').classList.add('open')
             });
+    })
+
+    let overlay = document.querySelector('.modal-overlay')
+
+    overlay.addEventListener('click', (e) => {
+        if(e.target.classList.contains('modal-overlay')) {
+            overlay.style.display = 'none'
+        }
     })
 
     let minicart = document.querySelector('.mini-cart')
