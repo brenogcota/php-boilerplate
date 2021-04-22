@@ -164,7 +164,7 @@
     <header class="_flex _ac _sb">
         <h1>Shop</h1>
 
-        <div class="mini-cart">Cart
+        <div class="mini-cart">Carrinho
         
             <div class="cart-items">
                 <ul class="list-items">

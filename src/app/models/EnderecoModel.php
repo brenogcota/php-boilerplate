@@ -10,11 +10,10 @@ class EnderecoModel extends Model {
         $this->user = new UsuarioModel();
     }
 
-    public function create($logradouro, $numero, $complemento, $bairro, $cidade, $id) {
-        $user = $this->user->getById($id);
-        $userId = $user['id_usuario'];
+    public function create($logradouro, $numero, $complemento, $bairro, $cidade) {
+        $user = $this->user->getId();
 
-        $sql = "INSERT INTO endereco(logradouro, numero, complemento, bairro, cidade, id_usuario) VALUES ('$logradouro', '$numero', '$complemento', '$bairro', '$cidade', '$userId')";
+        $sql = "INSERT INTO endereco(logradouro, numero, complemento, bairro, cidade, id_usuario) VALUES ('$logradouro', '$numero', '$complemento', '$bairro', '$cidade', '$user')";
         
         $result = $this->con->query($sql) or die (mysqli_error($this->con));
         if($result){

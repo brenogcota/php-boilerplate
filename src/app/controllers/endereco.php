@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "./src/app/models/EnderecoModel.php";
 require_once "./src/app/validators/EnderecoValidator.php";
 
@@ -18,9 +19,8 @@ class EnderecoController {
         $complemento = $req['complemento'];
         $bairro = $req['bairro'];
         $cidade = $req['cidade'];
-        $login = 1;
 
-        $endereco->create($logradouro, $numero, $complemento, $bairro, $cidade, $login);
+        $endereco->create($logradouro, $numero, $complemento, $bairro, $cidade);
     }
 
     
