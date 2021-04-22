@@ -59,7 +59,7 @@
         height: auto;
     }
 
-    .add-to-cart, .buy-button {
+    .add-to-cart, .buy-button, .share {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,18 +74,24 @@
         opacity: 0.8;
     }
 
-    .add-to-cart:hover, .buy-button:hover {
+    .add-to-cart:hover, .buy-button:hover, .share:hover {
         opacity: 1;
         transition: all 0.5s;
     }
 
-    .shelf-payment, .shelf-qtd {
+    .cart-payment, .shelf-qtd {
         box-sizing: border-box;
         margin: 0.4rem 0;
         border: none;
         outline: none;
         padding: 0.5rem;
         border: 4px;
+    }
+
+    .cart-payment {
+        margin-right: auto;
+        padding-left: 0;
+        border: 1px solid #ccc;
     }
 
     header {
@@ -111,7 +117,7 @@
         min-width: 235px;
         background: #FFF;
         border: 1px solid #eee;
-        z-index: 999;
+        z-index: 250;
     }
 
     .cart-items ul {
@@ -199,6 +205,42 @@
         height: 8%;
     }
 
+    .shelf.is-invisible {
+        display: none;
+    }
+
+    .search-bar {
+        padding: 0.5rem 1rem;
+        background: #ddd;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+        outline: none;
+    }
+
+    .modal-overlay {
+        display: none;
+        width: 99vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+    }
+
+    .modal-overlay.open {
+        display: flex;
+    }
+
+    .modal {
+        padding: 1.5rem;
+        background: #FFF;
+    }
+
+
 </style>
 <body>
     <div class="background">
@@ -206,6 +248,16 @@
         <!--MINICART-->
         <button class="cart mini-cart"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/shopping-cart--v1.png"/></button>
         <div class="mini-cart">
+
+        <h1>Shop</h1>
+
+
+        <div class="mini-cart">Carrinho
+
+        <input type="text" placeholder="Buscar" class="search-bar" />
+
+        <div class="mini-cart">Cart
+
         
             <div class="cart-items">
                 <ul class="list-items">
@@ -217,6 +269,12 @@
                 </div>
 
                 <div class="summary-box _flex _ac _sb _fdc">
+
+                    <select class="cart-payment" name="pagamento">
+                        <option value="2">Em dinheiro</option>
+                        <option value="1">Cartão</option>
+                    </select>
+
                     <div class="summary-items _flex _ac _sb">
                         <span>Total: </span>
                         <strong class="summary-total">R$ 00.00</strong>
@@ -229,25 +287,42 @@
     <section class="search-result">
         <ul class="grid">
             <?php foreach($data as $produto) { ?>
-                <li class="shelf" data-id="<?php echo $produto['id_produto'] ?>">
+                <li class="shelf" data-id="<?php echo $produto['id_produto'] ?>" data-name="<?php echo $produto['nome'] ?>">
                     <img class="shelf-img" src="/src/assets/img/<?php echo $produto['imagem'] ?>" alt="<?php echo $produto['nome'] ?>" data-src="/src/assets/img/<?php echo $produto['imagem'] ?>">
                     <h4 class="shelf-name"><?php echo $produto['nome'] ?></h4>
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
 
                     <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
+
+
+                    <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
+
+                    <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
+
                     <button class="add-to-cart">Adicionar ao carrinho</button>
                 </li>
             <?php } ?>
         </ul>
     </section>
+
     <div style="height: 100px; margin-bottom: 30%;"></div>
-    </div>
 
     <a href="/index">
         <div class="footer">
             <div style="margin: auto"><img src="https://img.icons8.com/metro/26/ffffff/home.png"/></div>
         </div>
     </a>
+
+
+
+    <div class="modal-overlay">
+       <div class="modal">
+        <h2>Sua lista está pronta</h2>
+        <a href="#" class="share">Compartilhar</a>
+       </div>
+    </div>
+
+
     
 </body>
 <script>
@@ -261,6 +336,8 @@
             let price = e.target.parentNode.querySelector('.shelf-price').textContent;
             let qtd = e.target.parentNode.querySelector('.shelf-qtd').value;
             //let payment = e.target.parentNode.querySelector('.shelf-payment').value;
+            //let payment = e.target.parentNode.querySelector('.shelf-payment').value;
+
 
             if(qtd < 1) {
                 alert('quantidade inválida!')
@@ -307,51 +384,109 @@
 
             document.querySelector('.cart-items').style.display = 'block';
 
+            items = document.querySelectorAll('.list-items li')
             let summaryTotal = Array.from(items).reduce((acc, cur) => {
                 return Number(acc) + Number(cur.dataset.partialValue)
-            }, [])
+            }, 0)
 
             document.querySelector('.summary-total').textContent = Number(summaryTotal).toFixed(2)
 
             let removeBtns = document.querySelectorAll('.remove-to-cart')
             Array.from(removeBtns).map((btn, idx) => {
-                let items = document.querySelectorAll('.list-items li')
-                btn.addEventListener('click', function() {
-                    items[idx].remove()
-                    console.log(idx)
-                    if(items.length <= 1) {
+                btn.addEventListener('click', function(e) {
+                    e.target.parentNode.remove()
+                    let items = document.querySelectorAll('.list-items li')
+                    if(items.length < 1) {
                         document.querySelector('.cart-empty').style.display = 'flex';
                         document.querySelector('.summary-total').textContent = '00.00'
+                    } else {
+                        let summaryTotal = Array.from(items).reduce((acc, cur) => {
+                            return Number(acc) + Number(cur.dataset.partialValue)
+                        }, 0)
+
+                        document.querySelector('.summary-total').textContent = Number(summaryTotal).toFixed(2)
                     }
                 })
             })
-
-            let buyButton = document.querySelector('.buy-button')
-        
-            let products = Array.from(items).reduce((acc, cur) => {
-                let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: cur.dataset.pagamento, total: cur.dataset.partialValue };
-                return [...acc, obj]
-            }, [])
-
-            buyButton.addEventListener('click', function() {
-                fetch('/test', 
-                     {
-                         method: 'POST',
-                         headers: {
-                            'Content-Type': 'application/json'
-                        }, 
-                         body: JSON.stringify(products)
-                      })
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(data) {
-                        console.log(data);
-                    });
-            })
-            
             
         })
+    })
+
+    let buyButton = document.querySelector('.buy-button')
+
+    buyButton.addEventListener('click', function() {
+        let items = document.querySelectorAll('.list-items li');
+        let payment = document.querySelector('.cart-payment').value;
+
+        let products = Array.from(items).reduce((acc, cur) => {
+            let obj = { id: cur.dataset.id, quantidade: cur.dataset.qtd, pagamento: payment, parcial: cur.dataset.price, total: cur.dataset.partialValue };
+            return [...acc, obj]
+        }, [])
+
+        if(products.length < 1) {
+            alert('Seu carrinho está vazio!')
+            return;
+        }
+        fetch('/test', 
+                {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                }, 
+                    body: JSON.stringify(products)
+                })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                document.querySelector('.modal-overlay').classList.add('open')
+
+                const items = data;
+                const replacer = (key, value) => value === null ? '' : value 
+                const header = Object.keys(items[0])
+                const csv = "data:text/csv;charset=utf-8,"+[
+                    header.join(','),
+                    ...items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+                ].join('\r\n')
+
+                let encodedUri = encodeURI(csv);
+                let aEL = document.querySelector(".share");
+                aEL.setAttribute("href", encodedUri);
+                aEL.setAttribute("download", "lista.csv");
+
+                // aEL.addEventListener('click', async function(e) {
+                //     e.preventDefault();
+                //     var file = new File([csv], "lista.csv", {type: 'text/csv'});
+                //     var filesArray = [file];
+                //     e.target.textContent = 'carregando..'
+
+                //     if(navigator.canShare && navigator.canShare({ files: filesArray })) {
+
+                //         try {
+                //             await navigator.share({
+                //                 text: 'lista de compras',
+                //                 files: filesArray,
+                //                 title: 'Lista de compras',
+                //                 url: 'https://google.com'
+                //             });
+
+                //             aEL.textContent = 'Compartilhar'
+                //         } catch(e) {
+                //             console.log(e);
+                //             aEL.textContent = 'Ops..'
+                //         } 
+                //     }
+                // })
+                
+            });
+    })
+
+    let overlay = document.querySelector('.modal-overlay')
+
+    overlay.addEventListener('click', (e) => {
+        if(e.target.classList.contains('modal-overlay')) {
+            overlay.classList.remove('open')
+        }
     })
 
     let minicart = document.querySelector('.mini-cart')
@@ -364,9 +499,25 @@
         } else {
             cart.style.display = 'block' 
         }
-        //cart.style.display == 'none' ? cart.style.display = 'block' : cart.style.display = 'none'
         
-        
+    })
+
+    let searchBar = document.querySelector('.search-bar')
+
+    searchBar.addEventListener('keyup', (e) => {
+        let value = e.target.value.toUpperCase()
+        let items = document.querySelectorAll('.grid .shelf')
+
+        Array.from(items).forEach(item => {
+            let name = item.dataset.name.toUpperCase()
+            
+            if(name.startsWith(value)) {
+                item.classList.remove('is-invisible')
+            } else {
+                item.classList.add('is-invisible')
+            }
+        })
+
     })
     
 </script>
