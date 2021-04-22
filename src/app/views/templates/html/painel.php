@@ -36,38 +36,57 @@ include('../../../helpers/verifica_login.php');
 
 
 			<h1 align="center">Categorias</h1>
+			<a href="/produto/categoria/1">
+				<div class="categoria" style="background-image: url(../../../../assets/img/bebidas.jpg); background-size: 200%; background-repeat: no-repeat;" onclick="document.getElementById('bebidas').style.display='block'">
+					<p>Bebidas</p>
+				</div>
+			</a>
+			
+			<a href="/produto/categoria/4">
+				<div class="categoria" style="background-image: url(../../../../assets/img/hortifruti.jpg); background-size: 200%; background-repeat: no-repeat;">
+					<p>Hortifruti</p>
+				</div>
+			</a>
+			
+			<a href="/produto/categoria/2">
+				<div class="categoria" style="background-image: url(../../../../assets/img/carnes.jpg); background-size: 200%; background-repeat: no-repeat;">
+					<p>Carnes</p>
+				</div>
+			</a>
+			
+			<a href="/produto/categoria/3">
+				<div class="categoria" style="background-image: url(../../../../assets/img/higiene.jpg); background-size: 150%; background-repeat: no-repeat;">
+					<p>Higiene</p>
+				</div>
+			</a>
 
-			<div class="categoria" style="background-image: url(../img/bebidas.jpg); background-size: 200%; background-repeat: no-repeat;" onclick="document.getElementById('bebidas').style.display='block'">
-				<p>Bebidas</p>
-			</div>
-			
-			<div class="categoria" style="background-image: url(../img/hortifruti.jpg); background-size: 200%; background-repeat: no-repeat;">
-				<p>Hortifruti</p>
-			</div>
-			
-			<div class="categoria" style="background-image: url(../img/carnes.jpg); background-size: 200%; background-repeat: no-repeat;">
-				<p>Carnes</p>
-			</div>
-			
-			<div class="categoria" style="background-image: url(../img/higiene.jpg); background-size: 150%; background-repeat: no-repeat;">
-				<p>Higiene</p>
-			</div>
+			<a href="/produto/categoria/5">
+				<div class="categoria" style="background-image: url(../../../../assets/img/cereais.jpg); background-size: 150%; background-repeat: no-repeat;">
+					<p>Cereais</p>
+				</div>
+			</a>
 
-			
+			<a href="/produto/categoria/6">
+				<div class="categoria" style="background-image: url(../../../../assets/img/enlatados.jpg); background-size: 150%; background-repeat: no-repeat;">
+					<p>Enlatados</p>
+				</div>
+			</a>
+
+			<a href="/produto/categoria/7">
+				<div class="categoria" style="background-image: url(../../../../assets/img/laticinios.png); background-size: 150%; background-repeat: no-repeat;">
+					<p>Laticínios</p>
+				</div>
+			</a>
+
+			<a href="/produto/categoria/8">
+				<div class="categoria" style="background-image: url(../../../../assets/img/oleos.jpg); background-size: 150%; background-repeat: no-repeat; margin-bottom: 5%;">
+					<p>Óleos/Azeites</p>
+				</div>
+			</a>
+			<div style="height: 100px; margin-bottom: 30%;"></div>
 		</div><!-- CONTENT END -->
 	</div> <!-- BACKGROUND END -->
 
-	<!-- MODAL BEBIDAS -->
-	<div id="bebidas" class="modal">
-	    <div class="modal-content">
-	      <div style="height: 500px; margin-top: 5%;" class="container">
-	        <span onclick="document.getElementById('bebidas').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-	        <p>LISTA DE PRODUTOS DA CATEGORIA</p>
-	      </div>
-	    </div>
-	 </div> <!-- MODAL BEBIDAS END-->
-	
-	
 
 	<div class="footer">
 		<div style="margin: auto"><img src="https://img.icons8.com/metro/26/ffffff/home.png"/></div>

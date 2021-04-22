@@ -9,6 +9,9 @@ Route::add('/', function(){
 });
 
 // GET routes
+Route::add('/index', function(){
+    header("Location: /src/app/views/templates/html/painel.php");
+}, 'get');
 Route::add('/login', function(){
     header("Location: /src/app/views/templates/auth/login.php");
 }, 'get');
@@ -24,9 +27,13 @@ Route::add('/logout', function(){
 Route::add('/endereco/cadastrar', function(){
     EnderecoController::create();
 }, 'get');
-
+/*
 Route::add('/produtos', function(){
     ProdutoController::index();
+}, 'get');
+*/
+Route::add('/produto/categoria/([0-9]*)', function($param){
+    ProdutoController::getByCategory($param);  //////TESTE
 }, 'get');
 
 // POST routes
