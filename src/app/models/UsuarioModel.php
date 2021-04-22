@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "./src/app/models/Model.php";
 
 class UsuarioModel extends Model {
@@ -52,17 +51,16 @@ class UsuarioModel extends Model {
 
     }
 
-
-    public function getById($id) {
-        $userQuery = "SELECT * FROM usuario WHERE id_usuario = '$id'";
-
-        if($result = $this->con->query($userQuery)){
-            if($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                return $row;
-            }
-        }
+    public function getId(){
+        $idquery = "SELECT id_usuario FROM usuario WHERE login = '".$_SESSION['login']."'";
+        $resid = $this->con->query($idquery);
+        $array = $resid->fetch_row();
+        $result = $array[0];
+        return $result;
+        
 
         $this->con->close();
+
     }
 }
+
