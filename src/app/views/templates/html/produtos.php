@@ -174,7 +174,6 @@
         overflow-y: auto;
     }
 
-<<<<<<< HEAD
     .mini-cart{
         position: fixed;
         top: 2%;
@@ -205,6 +204,7 @@
         width: 30%;
         height: 8%;
     }
+
     .shelf.is-invisible {
         display: none;
     }
@@ -240,6 +240,7 @@
         background: #FFF;
     }
 
+
 </style>
 <body>
     <div class="background">
@@ -247,6 +248,7 @@
         <!--MINICART-->
         <button class="cart mini-cart"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/shopping-cart--v1.png"/></button>
         <div class="mini-cart">
+
         <h1>Shop</h1>
 
 
@@ -290,11 +292,12 @@
                     <h4 class="shelf-name"><?php echo $produto['nome'] ?></h4>
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
 
+                    <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
+
 
                     <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
 
                     <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
-
 
                     <button class="add-to-cart">Adicionar ao carrinho</button>
                 </li>
@@ -303,7 +306,6 @@
     </section>
 
     <div style="height: 100px; margin-bottom: 30%;"></div>
-    </div>
 
     <a href="/index">
         <div class="footer">
@@ -318,7 +320,8 @@
         <h2>Sua lista está pronta</h2>
         <a href="#" class="share">Compartilhar</a>
        </div>
-    <div>
+    </div>
+
 
     
 </body>
@@ -332,9 +335,8 @@
             let name = e.target.parentNode.querySelector('.shelf-name').textContent;
             let price = e.target.parentNode.querySelector('.shelf-price').textContent;
             let qtd = e.target.parentNode.querySelector('.shelf-qtd').value;
-
             //let payment = e.target.parentNode.querySelector('.shelf-payment').value;
-
+            //let payment = e.target.parentNode.querySelector('.shelf-payment').value;
 
 
             if(qtd < 1) {
@@ -375,8 +377,6 @@
             $li.dataset.partialValue = partialValue;
             $li.dataset.qtd = qtd;
             //$li.dataset.pagamento = payment;
-
-
 
 
             listItems.appendChild($li);
