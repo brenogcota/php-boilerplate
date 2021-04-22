@@ -294,11 +294,6 @@
 
                     <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
 
-
-                    <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
-
-                    <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
-
                     <button class="add-to-cart">Adicionar ao carrinho</button>
                 </li>
             <?php } ?>
