@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="background">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <style>
+    .background{
+        background-image: linear-gradient(to right, green, rgb(39, 174, 97) 50%, green);
+        width: 100%;
+        height: 100%;
+        margin-top: 0px;
+    }
     li {
         list-style: none;
     }
@@ -34,6 +40,7 @@
         align-items: center;
         padding: 20px;
         background: #eee;
+        border-radius: 20px; 
     }
 
     .shelf:hover .shelf-img {
@@ -132,6 +139,8 @@
         right: 0px;
         top: -70px;
         left: 87%;
+        background-color: #aa0000;
+        color: #fff
     }
 
     .summary-box {
@@ -159,12 +168,44 @@
         overflow-y: auto;
     }
 
+    .mini-cart{
+        position: fixed;
+        top: 2%;
+        right: 2%;
+    }
+    .cart{
+        position: fixed;
+        top: 3%;
+        right: 5%;
+        background-color: rgba(29,126,70,50);
+        border-radius: 50%;
+        border-color: #ffffff;
+        width: 50px;
+        height: 50px;
+    }
+    .cart img{
+        height: 30px;
+        width: 30px;
+    }
+
+    .footer{
+        display: flex;
+        background-image: linear-gradient(to bottom, green, rgb(39, 174, 97) 50%, green);
+        border-radius: 40px 40px 0px 0px;
+        position: fixed;
+        bottom: 0px;
+        left: 35%;
+        width: 30%;
+        height: 8%;
+    }
+
 </style>
 <body>
+    <div class="background">
     <header class="_flex _ac _sb">
-        <h1>Shop</h1>
-
-        <div class="mini-cart">Cart
+        <!--MINICART-->
+        <button class="cart mini-cart"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/shopping-cart--v1.png"/></button>
+        <div class="mini-cart">
         
             <div class="cart-items">
                 <ul class="list-items">
@@ -183,7 +224,7 @@
                     <button class="buy-button">Fechar pedido</button>
                 </div>
             </div>
-        </div>
+        </div>  <!--MINICART-->
     </header>
     <section class="search-result">
         <ul class="grid">
@@ -193,17 +234,20 @@
                     <h4 class="shelf-name"><?php echo $produto['nome'] ?></h4>
                     <h3 class="shelf-price"><?php echo $produto['preco'] ?></h3>
 
-                    <input class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
-                    <select class="shelf-payment" name="pagamento">
-                        <option value="1">Cartão</option>
-                        <option value="2">Em dinheiro</option>
-                    </select>
-
+                    <input style="border: 1px solid black" class="shelf-qtd" name="quantidade" placeholder="0" type="number" value="1" min="1" max="100"/>
                     <button class="add-to-cart">Adicionar ao carrinho</button>
                 </li>
             <?php } ?>
         </ul>
     </section>
+    <div style="height: 100px; margin-bottom: 30%;"></div>
+    </div>
+
+    <a href="/index">
+        <div class="footer">
+            <div style="margin: auto"><img src="https://img.icons8.com/metro/26/ffffff/home.png"/></div>
+        </div>
+    </a>
     
 </body>
 <script>
@@ -216,7 +260,7 @@
             let name = e.target.parentNode.querySelector('.shelf-name').textContent;
             let price = e.target.parentNode.querySelector('.shelf-price').textContent;
             let qtd = e.target.parentNode.querySelector('.shelf-qtd').value;
-            let payment = e.target.parentNode.querySelector('.shelf-payment').value;
+            //let payment = e.target.parentNode.querySelector('.shelf-payment').value;
 
             if(qtd < 1) {
                 alert('quantidade inválida!')
@@ -246,6 +290,7 @@
                                         <p class="cart-name">${name}</p>
                                         <span class="cart-price">R$ ${partialValue}</span>
                                         <span class="cart-qtd">${qtd}x</span>
+                                        <span>________________</span>
                                     </div>
                                 </div>
 
@@ -254,7 +299,7 @@
             $li.dataset.id = id;
             $li.dataset.partialValue = partialValue;
             $li.dataset.qtd = qtd;
-            $li.dataset.pagamento = payment;
+            //$li.dataset.pagamento = payment;
 
 
             listItems.appendChild($li);

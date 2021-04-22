@@ -3,7 +3,7 @@ require_once "./src/app/models/ProdutoModel.php";
 require_once "./src/app/controllers/base.php";
 
 class ProdutoController extends BaseController {
-
+	/*
     public static function index() {
         $produtoModel = new ProdutoModel();
         $produtos = $produtoModel->index();
@@ -14,6 +14,17 @@ class ProdutoController extends BaseController {
     public static function store($data) {
         echo json_decode($data, true);
     }
-    
+    */
+
+    public static function getByCategory($idCat) {
+        $produtoModel = new ProdutoModel();
+        $produtos = $produtoModel->getByCategory($idCat);
+
+        parent::render('html', 'produtos', $produtos);
+    }
+
+    public static function store($data) {
+        echo json_decode($data, true);
+    }
 }
 
