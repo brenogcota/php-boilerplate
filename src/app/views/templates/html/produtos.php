@@ -42,7 +42,7 @@
         background: #eee;
         border-radius: 20px; 
     }
-
+/*
     .shelf:hover .shelf-img {
         transform: rotate(25deg);
         transition: all 0.6s;
@@ -53,7 +53,7 @@
         box-shadow: 0 0 1em #333;
         transition: all 0.6s;
     }
-
+*/
     .shelf-img {
         width: 200px;
         height: auto;
@@ -73,12 +73,12 @@
         cursor: pointer;
         opacity: 0.8;
     }
-
+/*
     .add-to-cart:hover, .buy-button:hover, .share:hover {
         opacity: 1;
         transition: all 0.5s;
     }
-
+*/
     .cart-payment, .shelf-qtd {
         box-sizing: border-box;
         margin: 0.4rem 0;
@@ -100,10 +100,12 @@
 
     ._flex {
         display: flex;
+        z-index: 50;
     } ._jc {
         justify-content: center;
     } ._ac {
         align-items: center;
+        z-index: 50;
     } ._sb {
         justify-content: space-between;
     } ._fdc {
@@ -210,6 +212,8 @@
     }
 
     .search-bar {
+        position: fixed;
+        margin: auto -75%;
         padding: 0.5rem 1rem;
         background: #ddd;
         border: 1px solid #bbb;
@@ -249,14 +253,13 @@
         <button class="cart mini-cart"><img src="https://img.icons8.com/pastel-glyph/64/ffffff/shopping-cart--v1.png"/></button>
         <div class="mini-cart">
 
-        <h1>Shop</h1>
 
 
-        <div class="mini-cart">Carrinho
+        <div class="mini-cart">
 
         <input type="text" placeholder="Buscar" class="search-bar" />
 
-        <div class="mini-cart">Cart
+        <div class="mini-cart">
 
         
             <div class="cart-items">
@@ -357,12 +360,14 @@
 
             let $li = document.createElement('li')
             $li.innerHTML = `
-                                <div class="_flex _ac"><img class="cart-img" src="${image}" alt="">
-                                    <div class="_flex _jc _fdc">
-                                        <p class="cart-name">${name}</p>
-                                        <span class="cart-price">R$ ${partialValue}</span>
-                                        <span class="cart-qtd">${qtd}x</span>
-                                        <span>________________</span>
+                                <div style="z-index: 50;">
+                                    <div class="_flex _ac"><img class="cart-img" src="${image}" alt="">
+                                        <div class="_flex _jc _fdc">
+                                            <p class="cart-name">${name}</p>
+                                            <span class="cart-price">R$ ${partialValue}</span>
+                                            <span class="cart-qtd">${qtd}x</span>
+                                            <span>________________</span>
+                                        </div>
                                     </div>
                                 </div>
 
