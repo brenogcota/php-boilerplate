@@ -20,6 +20,10 @@ Route::add('/cadastro', function(){
     header("Location: /src/app/views/templates/auth/cadastro.php");
 }, 'get');
 
+Route::add('/endereco', function(){
+    header("Location: /src/app/views/templates/html/endereco.php");
+}, 'get');
+
 Route::add('/logout', function(){
     UsuarioController::logout();
 }, 'get');
