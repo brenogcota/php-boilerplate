@@ -1,5 +1,5 @@
 <?php 
-require_once "./src/app/helpers/view.php";
+require_once "./src/app/Utils/view.php";
 
 class BaseController {
 

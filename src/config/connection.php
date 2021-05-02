@@ -1,5 +1,5 @@
 <?php
 define('HOST', '127.0.0.1');
-define('USUARIO', 'root');
-define('SENHA', '');
-define('DB', 'projeto');
+define('User', 'root');
+define('Password', '');
+define('DB', 'database');

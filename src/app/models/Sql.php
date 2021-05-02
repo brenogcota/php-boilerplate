@@ -9,17 +9,13 @@ class Sql {
 
     function __construct() {
         $this->host = HOST;
-        $this->user = USUARIO;
-        $this->pass = SENHA;
+        $this->user = User;
+        $this->pass = Password;
         $this->db = DB;
     }
 
     public function connect() {
-        $conexao = mysqli_connect($this->host, $this->user, $this->pass, $this->db) or die ("Não foi possível conectar!");
-        return $conexao;
+        $con = mysqli_connect($this->host, $this->user, $this->pass, $this->db) or die ("Connection refused");
+        return $con;
     }
 }
-
-
-
-?>

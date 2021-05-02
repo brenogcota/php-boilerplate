@@ -1,0 +1,30 @@
+:root {
+    --primary: #1e90ff;
+    --secondary: #397abb;
+    --white: #ffffff;
+    --gray: #666;
+    --dark: #333;
+    --success: rgb( 39 , 180 , 34 );
+}
+
+* {
+    margin: 0; padding: 0;
+    outline: none; text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 82%;
+}
+
+body {
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    align-items: center; justify-content: center; flex-direction: column;
+    margin: 20px;
+    background: #222;
+    color: var(--white);
+}
+
+
